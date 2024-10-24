@@ -2,8 +2,12 @@
 <body>
 <h1>Lista di Eventi</h1>
 <ul>
-    <li th:each="evento : ${eventi}">
-        <span th:text="${eventi.nome}"></span>,
+    <li th:each="event : ${evento}">
+        <span th:text="${evento.titolo_evento}"></span>,
+        <span th:text="${evento.id_tipo}"></span>,
+        <span th:text="${evento.data_inizio}"></span>,
+        <span th:text="${evento.data_fine}"></span>,
+        <span th:text="${evento.id_stanza}"></span>,
     </li>
 </ul>
 </body>
