@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 @Entity
 public class Contratto {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Integer RAL;
     //Orario orario
