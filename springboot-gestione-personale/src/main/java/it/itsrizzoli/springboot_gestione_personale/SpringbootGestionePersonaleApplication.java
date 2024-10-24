@@ -8,7 +8,6 @@ public class SpringbootGestionePersonaleApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringbootGestionePersonaleApplication.class, args);
-		System.out.println("CIAO");
 	}
 
 }
