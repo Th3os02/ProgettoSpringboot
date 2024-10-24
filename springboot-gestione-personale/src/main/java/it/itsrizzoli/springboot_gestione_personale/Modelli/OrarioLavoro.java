@@ -6,24 +6,25 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Entity
 public class OrarioLavoro {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    private LocalDateTime oraInizio;
-    private LocalDateTime oraFine;
+    private LocalTime oraInizio;
+    private LocalTime oraFine;
 
     public Integer getId() {
         return id;
     }
 
-    public LocalDateTime getOraInizio() {
+    public LocalTime getOraInizio() {
         return oraInizio;
     }
 
-    public LocalDateTime getOraFine() {
+    public LocalTime getOraFine() {
         return oraFine;
     }
 
@@ -31,11 +32,11 @@ public class OrarioLavoro {
         this.id = id;
     }
 
-    public void setOraInizio(LocalDateTime oraInizio) {
+    public void setOraInizio(LocalTime oraInizio) {
         this.oraInizio = oraInizio;
     }
 
-    public void setOraFine(LocalDateTime oraFine) {
+    public void setOraFine(LocalTime oraFine) {
         this.oraFine = oraFine;
     }
 }
