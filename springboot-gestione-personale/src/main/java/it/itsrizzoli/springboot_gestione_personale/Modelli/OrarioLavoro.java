@@ -11,7 +11,7 @@ import java.time.LocalTime;
 @Entity
 public class OrarioLavoro {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private LocalTime oraInizio;
     private LocalTime oraFine;
