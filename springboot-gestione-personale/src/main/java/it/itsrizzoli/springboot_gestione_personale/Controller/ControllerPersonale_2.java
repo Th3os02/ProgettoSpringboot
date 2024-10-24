@@ -9,5 +9,6 @@ public class ControllerPersonale_2 {
     public String utenti() {
         return "ProfiloUtente";
     }
+
 }
 
