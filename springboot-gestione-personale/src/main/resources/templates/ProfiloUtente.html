@@ -7,32 +7,31 @@
 <table>
     <tr>
         <td>Nome:</td>
-     <!--   <td th:text="${persona.nome}"></td>-->
+        <td th:text="${personale.nome}"></td>
     </tr>
     <tr>
         <td>Cognome:</td>
-       <!-- <td th:text="${persona.cognome}"></td>-->
+        <td th:text="${personale.cognome}"></td>
     </tr>
     <tr>
         <td>Email:</td>
-       <!-- <td th:text="${persona.email}"></td>-->
+        <td th:text="${personale.email}"></td>
     </tr>
     <tr>
         <td>Password:</td>
-      <!--  <td th:text="${persona.password}"></td> -->
+        <td th:text="${personale.password}"></td>
     </tr>
     <tr>
         <td>Ruolo:</td>
-       <!-- <td th:text="${persona.ruolo}"></td>-->
+        <td th:text="${personale.ruolo}"></td>
     </tr>
     <tr>
         <td>Contratto:</td>
-      <!--  <td th:text="${persona.contratto}"></td>-->
+        <td th:text="${personale.contratto}"></td>
     </tr>
     <tr>
-    <!--<td><a th:href="@{'edit/' + ${persona.getId()}}">Modifica Password</a></td>-->
+     <td><a th:href="@{'edit/' + ${personale.id}}">Modifica Password</a></td>
     </tr>
-
 </table>
 </body>
 </html>

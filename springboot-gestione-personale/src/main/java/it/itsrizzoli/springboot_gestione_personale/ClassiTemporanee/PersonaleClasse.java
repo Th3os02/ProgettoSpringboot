@@ -27,17 +27,21 @@ public class PersonaleClasse {
     String email;
 
     @NotNull
+    String password;
+
+    @NotNull
     String ruolo;
 
     @NotNull
     String contratto;
 
-    public PersonaleClasse(int id, String nome, String cognome, String email, String ruolo, String contratto) {
+    public PersonaleClasse(int id, String nome, String cognome, String email, String password,String ruolo, String contratto) {
 
         this.id = id;
         this.nome = nome;
         this.cognome = cognome;
         this.email = email;
+        this.password = password;
         this.ruolo = ruolo;
         this.contratto = contratto;
 
@@ -62,6 +66,15 @@ public class PersonaleClasse {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public int getId() {
         return id;
     }
