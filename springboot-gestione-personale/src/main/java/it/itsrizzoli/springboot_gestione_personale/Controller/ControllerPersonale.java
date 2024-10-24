@@ -12,7 +12,7 @@ public class ControllerPersonale {
 
     @GetMapping("gestisci")
     public String ListaPers(Model model) {
-        model.addAttribute("", utentiSalvati);
+        //model.addAttribute("", utentiSalvati);
         return "ListaPersonale";
     }
 }
