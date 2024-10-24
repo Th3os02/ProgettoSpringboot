@@ -8,5 +8,5 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class ControllerEventi {
 
     @GetMapping("eventi")
-    public String eventi(Personale utente) {return "eventi-" + utente.getNome() +"-"+utente.getCognome();}
+    public String eventi(Personale utente) {return "ListaEventi";}
 }

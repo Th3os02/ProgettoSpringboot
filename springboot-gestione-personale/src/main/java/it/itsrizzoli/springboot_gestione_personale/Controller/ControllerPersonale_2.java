@@ -1,17 +1,25 @@
 package it.itsrizzoli.springboot_gestione_personale.Controller;
 
+
+import it.itsrizzoli.springboot_gestione_personale.ClassiTemporanee.PersonaleClasse;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
 
 @Controller
 public class ControllerPersonale_2 {
-    //mi occupo della visualizzazione del profilo
-    //cambio password
-    @GetMapping ("Info-Utente")
-    public String utenti() {
+    @GetMapping("/Info-Utente/{id}")
+    public String getUtenteById(@PathVariable("id") int id, Model model) {
 
+        PersonaleClasse personale = ControllerPersonale.getListaPersonale().stream()
+                .filter(p -> p.getId() == id)
+                .findFirst()
+                .orElse(null);
+
+        model.addAttribute("personale", personale);
         return "ProfiloUtente";
     }
 
 }
-

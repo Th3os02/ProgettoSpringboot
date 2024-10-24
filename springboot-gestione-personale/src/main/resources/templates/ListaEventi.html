@@ -1,17 +1,16 @@
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <body>
-<h1>Lista di Eventi</h1>
+<h1>Lista Eventi</h1>
 
-<div th:switch="${evento.id_personale}">
-    <ul>
-        <li th:case="${evento.id_personale} == ${utente.id}" th:each="event : ${evento}">
-            <span th:text="${evento.titolo_evento}"></span>,
-            <span th:text="${evento.id_tipo}"></span>,
-            <span th:text="${evento.data_inizio}"></span>,
-            <span th:text="${evento.data_fine}"></span>,
-            <span th:text="${evento.id_stanza}"></span>,
-        </li>
-    </ul>
-    <!-- </div> -->
+<ul>
+    <li th:each="evento : ${eventi}" th:if="${evento.id_personale} == ${utente.id}">
+        <span th:text="${evento.titolo_evento}"></span>,
+        <span th:text="${evento.tipo}"></span>,
+        <span th:text="${evento.data_inizio}"></span>,
+        <span th:text="${evento.data_fine}"></span>,
+        <span th:text="${evento.stanza}"></span>
+    </li>
+</ul>
+
 </body>
 </html>

@@ -5,13 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
     <style>
-        body{
+        body {
             background-color: slategrey;
         }
+
         .center-text {
             text-align: center;
         }
-        .center-text h1{
+
+        .center-text h1 {
             color: darkslategrey;
             -webkit-text-stroke: 2px blanchedalmond;
             font-size: 60px;
@@ -19,39 +21,30 @@
             padding: 25px;
             margin: 10px;
             background-image: url("https://www.360visio.com/wp-content/uploads/v2/20b-Milano360/20h-1-PaginaMusei/7-GallArteModerna-2/b-hayez/DSC03647-MI-GalleriaArteModerna-s12Hayez-rX8j-TT.jpg");
-            background-position: center ;
+            background-position: center;
             background-size: cover;
 
         }
-        .center-text h2{
-            padding-top: 30px ;
+
+        .center-text h2 {
+            padding-top: 30px;
 
         }
 
         form {
-            margin: 35px;
+            margin: 40px;
             display: grid;
             place-items: center;
             font-size: 18px;
         }
-        form label{
+
+        form label {
             margin: 8px;
         }
-        form input{
+
+        form input {
             padding: 5px;
         }
-
-        .btnLog {
-            padding: 5px 10px;
-            font-size: 15px;
-        }
-
-        .posBtn {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
 
     </style>
 </head>
@@ -61,30 +54,25 @@
     <h1>Benvenuto al Museo</h1>
     <h2>Accedi al nostro servizio</h2>
 </div>
-<form>
+
+<form action="" method="POST">
     <table>
         <tr>
-            <td>Email:</td>
-            <td>
-                <label>
-                    <input placeholder="Inserisci la username">
-                </label>
-
-            </td>
-
+            <td><label>Email:</label></td>
+            <td><input placeholder="Inserisci l'email"></td>
         </tr>
-        <td>Password:</td>
-        <td>
-            <label>
-                <input placeholder="inserisci la password">
-            </label>
-        </td>
+
+        <tr>
+            <td><label>Password:</label></td>
+            <td><input placeholder="Inserisci la password"></td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Login"></td>
+        </tr>
     </table>
 </form>
-
-<div class="posBtn">
-    <button class="btnLog">Login</button>
-</div>
 
 </body>
 </html>

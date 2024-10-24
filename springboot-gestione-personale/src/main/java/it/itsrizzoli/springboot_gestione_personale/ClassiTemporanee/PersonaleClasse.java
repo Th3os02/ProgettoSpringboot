@@ -13,6 +13,9 @@ public class PersonaleClasse {
     //PERCHE SOSTITUITA DAL MODELLO "PERSONALE"
 
     @NotNull
+    int id;
+
+    @NotNull
     @Size(min = 3, max = 12)
     String nome;
 
@@ -23,10 +26,25 @@ public class PersonaleClasse {
     @Email
     String email;
 
-    public PersonaleClasse(String nome, String cognome, String email) {
+    @NotNull
+    String password;
+
+    @NotNull
+    String ruolo;
+
+    @NotNull
+    String contratto;
+
+    public PersonaleClasse(int id, String nome, String cognome, String email, String password,String ruolo, String contratto) {
+
+        this.id = id;
         this.nome = nome;
         this.cognome = cognome;
         this.email = email;
+        this.password = password;
+        this.ruolo = ruolo;
+        this.contratto = contratto;
+
     }
 
     public PersonaleClasse() {
@@ -53,4 +71,30 @@ public class PersonaleClasse {
         this.email = email;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
+    public String getRuolo() {
+        return ruolo;
+    }
+    public void setRuolo(String ruolo) {
+        this.ruolo = ruolo;
+    }
+    public String getContratto() {
+        return contratto;
+    }
+    public void setContratto(String contratto) {
+        this.contratto = contratto;
+    }
 }
