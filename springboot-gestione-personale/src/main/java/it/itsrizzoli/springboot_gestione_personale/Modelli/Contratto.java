@@ -1,9 +1,6 @@
 package it.itsrizzoli.springboot_gestione_personale.Modelli;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Contratto {
@@ -11,7 +8,12 @@ public class Contratto {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private Integer RAL;
-    //Orario orario
+
+
+    @ManyToOne
+    @JoinColumn(name = "orario_lavoro_id",nullable = false)
+    private OrarioLavoro orario;
+
     private String tipocontratto;
 
     public Integer getId() {

@@ -1,12 +1,9 @@
 package it.itsrizzoli.springboot_gestione_personale.Modelli;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
-import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.List;
 
 @Entity
 public class OrarioLavoro {
@@ -15,6 +12,10 @@ public class OrarioLavoro {
     private Integer id;
     private LocalTime oraInizio;
     private LocalTime oraFine;
+
+    @OneToMany(mappedBy = "contratto",cascade = CascadeType.ALL)
+    private List<Contratto> contratti;
+
 
     public Integer getId() {
         return id;
