@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Gestione del personale</title>
-    <link rel="stylesheet" type="text/css" href="StileListaPersonale.css">
+    <link rel="stylesheet" type="text/css" href="/stileListaPersonale.css"> <!-- Non va? -->
 </head>
 <body>
     <h2>Gestione del Personale</h2>
@@ -12,11 +12,11 @@
                 <span th:text="${persona.nome}"></span>
                 <span th:text="${persona.cognome}"></span>
                 <span th:text="${persona.email}"></span>
-                <!-- Aggiungi altri campi, ovviamente-->
+                <!-- Altri campi coerenti con quelli nel database da aggiungere -->
             </li>
-            <button>
-                <a th:href="@{/registra}">Registra nuovo personale</a>
-            </button>
         </ul>
+    <button>
+        <a th:href="@{/registra}">Registra nuovo personale</a>
+    </button>
 </body>
 </html>

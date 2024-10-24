@@ -29,6 +29,10 @@ public class PersonaleClasse {
         this.email = email;
     }
 
+    public PersonaleClasse() {
+
+    }
+
 
     public String getNome() {
         return nome;
