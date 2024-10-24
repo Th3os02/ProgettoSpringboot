@@ -9,11 +9,11 @@ public class Contratto {
     private Integer id;
     private Integer RAL;
 
-
-    /*@ManyToOne
-    @JoinColumn(name = "orario_lavoro_id",nullable = false)
-    private OrarioLavoro orario;*/
-
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "orario_lavoro_id", nullable = false, foreignKey = @ForeignKey(name =
+            "FK_contratto-orarioLavoro"),insertable = false,updatable = false)
+    // Specifica il nome della colonna e che non può essere null
+    private OrarioLavoro orarioLavoro;
     private String tipocontratto;
 
     public Integer getId() {
