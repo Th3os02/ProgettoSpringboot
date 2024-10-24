@@ -9,7 +9,7 @@ import org.springframework.lang.NonNull;
 @Entity
 public class Personale {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     
     private String nome;
