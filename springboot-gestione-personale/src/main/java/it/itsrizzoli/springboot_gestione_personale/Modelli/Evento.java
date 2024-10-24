@@ -17,7 +17,7 @@ public class Evento {
 
     private String descrizione_evento;
 
-    private String organizzatore;
+    private Integer id_personale;
 
     private Date data_inizio;
     private Date data_fine;
@@ -58,9 +58,6 @@ public class Evento {
         this.descrizione_evento = descrizione_evento;
     }
 
-    public String getOrganizzatore() {
-        return organizzatore;
-    }
 
     public Date getData_inizio() {
         return data_inizio;
@@ -78,9 +75,6 @@ public class Evento {
         this.data_fine = data_fine;
     }
 
-    public void setOrganizzatore(String organizzatore) {
-        this.organizzatore = organizzatore;
-    }
 
     public Integer getLimite_persone() {
         return limite_persone;
