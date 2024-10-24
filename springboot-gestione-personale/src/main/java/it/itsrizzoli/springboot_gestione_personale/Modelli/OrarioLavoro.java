@@ -13,7 +13,7 @@ public class OrarioLavoro {
     private LocalTime oraInizio;
     private LocalTime oraFine;
 
-    @OneToMany(mappedBy = "contratto",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "Contratto",cascade = CascadeType.ALL)
     private List<Contratto> contratti;
 
 
