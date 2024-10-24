@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestione del personale</title>
+</head>
+<body>
+    <h2>Gestione del Personale</h2>
+        <ul>
+            <li th:each="persona : ${ListaPers}">
+                <span th:text="${persona.nome}"></span>
+                <span th:text="${persona.cognome}"></span>
+                <span th:text="${persona.email}"></span>
+            </li>
+            <a th:href="@{/registrati}">Registra nuovo utente</a>
+        </ul>
+</body>
+</html>
