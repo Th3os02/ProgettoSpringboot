@@ -16,9 +16,9 @@ public class ControllerPersonale {
     ArrayList<PersonaleClasse> listaPersonale;
     public ControllerPersonale() {
         listaPersonale = new ArrayList<>();
-        listaPersonale.add(new PersonaleClasse("Mario", "Rossi", "mario.rossi@example.com"));
-        listaPersonale.add(new PersonaleClasse("Luigi", "Verdi", "luigi.verdi@example.com"));
-        listaPersonale.add(new PersonaleClasse("Anna", "Bianchi", "anna.bianchi@example.com"));
+        listaPersonale.add(new PersonaleClasse(1,"Mario", "Rossi", "mario.rossi@example.com","guida","stagista"));
+        listaPersonale.add(new PersonaleClasse(2,"Luigi", "Verdi", "luigi.verdi@example.com","Amministratore","indeterminato"));
+        listaPersonale.add(new PersonaleClasse(3,"Anna", "Bianchi", "anna.bianchi@example.com","Curatore","determinato"));
     }
     @GetMapping("/")
     public String login() {
