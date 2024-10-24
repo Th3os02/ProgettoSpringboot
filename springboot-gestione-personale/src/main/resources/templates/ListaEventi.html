@@ -1,0 +1,10 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<body>
+<h1>Lista di Eventi</h1>
+<ul>
+    <li th:each="evento : ${eventi}">
+        <span th:text="${eventi.nome}"></span>,
+    </li>
+</ul>
+</body>
+</html>

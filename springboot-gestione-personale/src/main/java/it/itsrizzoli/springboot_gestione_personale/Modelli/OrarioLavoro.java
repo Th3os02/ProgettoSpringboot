@@ -8,12 +8,12 @@ import java.util.List;
 @Entity
 public class OrarioLavoro {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private LocalTime oraInizio;
     private LocalTime oraFine;
 
-    @OneToMany(mappedBy = "contratto",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "Contratto",cascade = CascadeType.ALL)
     private List<Contratto> contratti;
 
 
