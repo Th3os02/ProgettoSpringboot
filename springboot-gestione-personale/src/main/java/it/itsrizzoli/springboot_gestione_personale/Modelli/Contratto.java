@@ -10,9 +10,9 @@ public class Contratto {
     private Integer RAL;
 
 
-    @ManyToOne
+    /*@ManyToOne
     @JoinColumn(name = "orario_lavoro_id",nullable = false)
-    private OrarioLavoro orario;
+    private OrarioLavoro orario;*/
 
     private String tipocontratto;
 
