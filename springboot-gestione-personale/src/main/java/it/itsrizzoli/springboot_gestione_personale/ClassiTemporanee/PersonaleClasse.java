@@ -19,10 +19,11 @@ public class PersonaleClasse {
     @Size(min = 4, max = 25)
     String cognome;
 
-    @Pattern(regexp = "^[a-zA-Z]+\\.[a-zA-Z]+@museo\\.com$\n")
+    @Pattern(regexp = "^[a-zA-Z]+\\.[a-zA-Z]+@museo\\.com$", message = "Formato corretto 'nome.cognome@museo.com' ")
     String email;
 
     @NotNull
+    @Min(value = 8, message = "Password minimo con 8 caratteri")
     String password;
 
     @NotNull
