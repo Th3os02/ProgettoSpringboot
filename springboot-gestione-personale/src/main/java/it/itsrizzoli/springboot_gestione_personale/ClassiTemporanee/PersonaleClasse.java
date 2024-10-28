@@ -1,10 +1,6 @@
 package it.itsrizzoli.springboot_gestione_personale.ClassiTemporanee;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 
 
 public class PersonaleClasse {
@@ -23,7 +19,7 @@ public class PersonaleClasse {
     @Size(min = 4, max = 25)
     String cognome;
 
-    @Email
+    @Pattern(regexp = "^[a-zA-Z]+\\.[a-zA-Z]+@museo\\.com$\n")
     String email;
 
     @NotNull

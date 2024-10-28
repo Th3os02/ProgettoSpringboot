@@ -20,9 +20,9 @@ public class ControllerPersonale {
     static ArrayList<PersonaleClasse> listaPersonale;
     public ControllerPersonale() {
         listaPersonale = new ArrayList<>();
-        listaPersonale.add(new PersonaleClasse(1,"Mario", "Rossi", "mario.rossi@example.com","123456","guida","stagista"));
-        listaPersonale.add(new PersonaleClasse(2,"Luigi", "Verdi", "luigi.verdi@example.com","987654","Amministratore","indeterminato"));
-        listaPersonale.add(new PersonaleClasse(3,"Anna", "Bianchi", "anna.bianchi@example.com","000000","Curatore","determinato"));
+        listaPersonale.add(new PersonaleClasse(1,"Mario", "Rossi", "mario.rossi@museo.com","123456","guida","stagista"));
+        listaPersonale.add(new PersonaleClasse(2,"Luigi", "Verdi", "luigi.verdi@museo.com","987654","Amministratore","indeterminato"));
+        listaPersonale.add(new PersonaleClasse(3,"Anna", "Bianchi", "anna.bianchi@museo.com","000000","Curatore","determinato"));
     }
     public static List<PersonaleClasse> getListaPersonale() {
         return listaPersonale;
@@ -31,6 +31,8 @@ public class ControllerPersonale {
     public String login() {
         return "Login";
     }
+
+
 
     @GetMapping("gestisci")
     public String personale(Model model) {
