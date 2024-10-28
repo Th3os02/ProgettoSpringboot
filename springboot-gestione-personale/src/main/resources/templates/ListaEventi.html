@@ -3,7 +3,7 @@
 <h1>Lista Eventi</h1>
 
 <ul>
-    <!--|| (utente.ruolo == "amministratore") -->
+    <!--|| (utente.ruolo == "amministratore") TEST -->
     <li th:each="evento : ${eventi}" th:if="(${evento.id_personale} == ${utente.id})">
         <span th:text="${evento.titolo_evento}"></span>,
         <span th:text="${evento.tipo}"></span>,
