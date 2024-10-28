@@ -6,17 +6,33 @@
     <link rel="stylesheet" type="text/css" href="/stileListaPersonale.css"> <!-- Non va? -->
 </head>
 <body>
-    <h2>Gestione del Personale</h2>
-        <ul>
-            <li th:each="persona : ${personale}">
-                <span th:text="${persona.nome}"></span>
-                <span th:text="${persona.cognome}"></span>
-                <span th:text="${persona.email}"></span>
-                <!-- Altri campi coerenti con quelli nel database da aggiungere -->
-            </li>
-        </ul>
-    <button>
-        <a th:href="@{/registra}">Registra nuovo personale</a>
-    </button>
+<h2>Gestione del Personale</h2>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Cognome</th>
+        <th>Email</th>
+        <th>Password</th>
+        <th>Ruolo</th>
+        <th>Contratto</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="persona : ${personale}">
+        <td th:text="${persona.id}"></td>
+        <td th:text="${persona.nome}"></td>
+        <td th:text="${persona.cognome}"></td>
+        <td th:text="${persona.email}"></td>
+        <td th:text="${persona.password}"></td>
+        <td th:text="${persona.ruolo}"></td>
+        <td th:text="${persona.contratto}"></td>
+    </tr>
+    </tbody>
+</table>
+<button>
+    <a th:href="@{/registra}">Registra nuovo personale</a>
+</button>
 </body>
 </html>

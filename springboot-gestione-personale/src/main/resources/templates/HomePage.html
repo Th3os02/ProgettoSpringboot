@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>IL Museo</title>
+</head>
+<body>
+<nav th:switch="${utente.ruolo}">
+    <ul th:case="'amministratore'">
+        <li><a th:href="@{/ProfiloUtente}">Profilo Utente</a></li>
+        <li><a th:href="@{/ListaEventi.html}">Lista Eventi</a></li>
+        <li><a th:href="@{/ListaPersonale.html}">Lista Personale</a></li>
+        <li><a th:href="@{/ModificaUtente.html}">Modifica Utente</a></li>
+        <li><a th:href="@{/RegistraPersonale.html}">Registra Personale</a></li>
+    </ul>
+
+    <ul th:case="'curatore'">
+        <li><a th:href="@{/ProfiloUtente}">Profilo Utente</a></li>
+        <li><a th:href="@{/ListaEventi.html}">Lista Eventi</a></li>
+        <li><a th:href="@{/ListaPersonale.html}">Lista Personale</a></li>
+    </ul>
+
+    <ul th:case="'guida'">
+        <li><a th:href="@{/ProfiloUtente}">Profilo Utente</a></li>
+        <li><a th:href="@{/ListaEventi.html}">Lista Eventi</a></li>
+    </ul>
+
+</nav>
+
+</body>
+</html>
