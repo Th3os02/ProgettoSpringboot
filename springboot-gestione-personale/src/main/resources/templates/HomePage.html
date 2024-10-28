@@ -2,13 +2,15 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}" />
+
     <title>IL Museo</title>
 </head>
 <body>
 
 <p th:text="'sei ' + ${ruolo}"></p>
-<nav th:switch="${ruolo}">
-    <ul th:case="'amministratore'">
+<nav th:switch="${ruolo}" class="navbar">
+    <ul th:case="'amministratore'" class="menu">
         <li><a th:href="@{/ProfiloUtente}">Profilo Utente</a></li>
         <li><a th:href="@{/ListaEventi}">Lista Eventi</a></li>
         <li><a th:href="@{/ListaPersonale}">Lista Personale</a></li>

@@ -1,25 +1,43 @@
 package it.itsrizzoli.springboot_gestione_personale.Modelli;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import org.springframework.lang.NonNull;
+
+import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Personale {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    
+
     private String nome;
     private String cognome;
     private String email;
     private String password;
-    //Ruolo ruolo
-    //Lingua lingua
-    //Contratto contratto
+    @ManyToOne
+    @JoinColumn(name = "ruolo_id", nullable = false, foreignKey = @ForeignKey(name = "FK_personale-ruolo"))
+    private Ruolo ruolo;
 
+    @ManyToMany
+    @JoinTable(name = "personale_lingua", joinColumns = @JoinColumn(name = "personale_id"), inverseJoinColumns =
+    @JoinColumn(name = "lingua_id"))
+    private Set<Lingue> lingue;
+
+    @ManyToOne
+    @JoinColumn(name = "contratto_id", nullable = false, foreignKey = @ForeignKey(name = "FK_personale-contratto"))
+    private Contratto contratto;
+
+
+    public Personale() {}
+
+    public Personale(String nome, String cognome, String email, String password) {
+        this.nome = nome;
+        this.cognome = cognome;
+        this.email = email;
+        this.password = password;
+    }
 
     public Integer getId() {
         return id;
