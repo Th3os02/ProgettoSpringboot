@@ -6,6 +6,7 @@
 <body>
 <table>
     <tr>
+        <!--http://localhost:8080/Info-Utente/1-->
         <td>Nome:</td>
         <td th:text="${personale.nome}"></td>
     </tr>
@@ -29,9 +30,9 @@
         <td>Contratto:</td>
         <td th:text="${personale.contratto}"></td>
     </tr>
-    <tr>
-     <td><a th:href="@{'Modifica/' + ${personale.id}}">Modifica Password</a></td>
-    </tr>
+    <p>
+     <a th:href="@{'Modifica/' + ${personale.id}}">Modifica Password</a>
+    </p>
 </table>
 </body>
 </html>
