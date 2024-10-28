@@ -1,9 +1,37 @@
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
     <title>Modifica Utente</title>
+    <!--http://localhost:8080/Info-Utente/Modifica/1-->
 </head>
 <body>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Modifica Password</title>
+</head>
+<body>
+<table>
+    <tr>
+        <td>Nome:</td>
+        <td th:text="${personale.nome}"></td>
+    </tr>
+    <tr>
+        <td>Cognome:</td>
+        <td th:text="${personale.cognome}"></td>
+    </tr>
+    <tr>
+        <td>Email:</td>
+        <td th:text="${personale.email}"></td>
+    </tr>
+    <tr>
+        <td>Ruolo:</td>
+        <td th:text="${personale.ruolo}"></td>
+    </tr>
+    <tr>
+        <td>Contratto:</td>
+        <td th:text="${personale.contratto}"></td>
+    </tr>
+</table>
 </body>
 </html>
