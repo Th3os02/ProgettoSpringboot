@@ -5,29 +5,34 @@
     <title>IL Museo</title>
 </head>
 <body>
-<!--
-<nav th:switch=(${Ruolo.getNome()}"> //non ho idea di come dovrebbe funzionare per prendere "ruolo"
+
+<p th:text="'sei ' + ${ruolo}"></p>
+<nav th:switch="${ruolo}">
     <ul th:case="'amministratore'">
         <li><a th:href="@{/ProfiloUtente}">Profilo Utente</a></li>
-        <li><a th:href="@{/ListaEventi.html}">Lista Eventi</a></li>
-        <li><a th:href="@{/ListaPersonale.html}">Lista Personale</a></li>
-        <li><a th:href="@{/ModificaUtente.html}">Modifica Utente</a></li>
-        <li><a th:href="@{/RegistraPersonale.html}">Registra Personale</a></li>
+        <li><a th:href="@{/ListaEventi}">Lista Eventi</a></li>
+        <li><a th:href="@{/ListaPersonale}">Lista Personale</a></li>
+        <li><a th:href="@{/ModificaUtente}">Modifica Utente</a></li>
+        <li><a th:href="@{/RegistraPersonale}">Registra Personale</a></li>
     </ul>
 
     <ul th:case="'curatore'">
         <li><a th:href="@{/ProfiloUtente}">Profilo Utente</a></li>
-        <li><a th:href="@{/ListaEventi.html}">Lista Eventi</a></li>
-        <li><a th:href="@{/ListaPersonale.html}">Lista Personale</a></li>
+        <li><a th:href="@{/ListaEventi}">Lista Eventi</a></li>
+        <li><a th:href="@{/ListaPersonale}">Lista Personale</a></li>
     </ul>
 
     <ul th:case="'guida'">
         <li><a th:href="@{/ProfiloUtente}">Profilo Utente</a></li>
-        <li><a th:href="@{/ListaEventi.html}">Lista Eventi</a></li>
+        <li><a th:href="@{/ListaEventi}">Lista Eventi</a></li>
+    </ul>
+
+    <ul th:case="'*'">
+        <li><a th:href="@{/Login}">Esegui l'accesso</a></li>
     </ul>
 
 </nav>
--->
+<!--
 <nav>
     <ul>
         <li><a th:href="@{/ProfiloUtente}">Profilo Utente</a></li>
@@ -37,6 +42,6 @@
         <li><a th:href="@{/RegistraPersonale.html}">Registra Personale</a></li>
     </ul>
 </nav>
-Sei amministratore
+-->
 </body>
 </html>
