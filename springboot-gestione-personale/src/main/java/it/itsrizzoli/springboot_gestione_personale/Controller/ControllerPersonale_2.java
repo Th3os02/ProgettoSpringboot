@@ -30,7 +30,7 @@ public class ControllerPersonale_2 {
                 .orElse(null);
 
         model.addAttribute("personale", personale);
-        return "ModificaPassword";
+        return "ModificaUtente";
     }
 
 }
