@@ -30,9 +30,9 @@
         <td>Contratto:</td>
         <td th:text="${personale.contratto}"></td>
     </tr>
-    <tr>
-     <a th:href="@{'Modifica/' + ${personale.id}}">Modifica Password</a>
-    </tr>
+
 </table>
+<a th:href="@{'Modifica/' + ${personale.id}}">Modifica Password</a>
+<button th:href="@{'Modifica/' + ${personale.id}}">Modifica Password</button>
 </body>
 </html>
