@@ -1,30 +1,46 @@
-package it.itsrizzoli.springboot_gestione_personale.Modelli;
+    package it.itsrizzoli.springboot_gestione_personale.Modelli;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+    import jakarta.persistence.*;
 
-@Entity
-public class Lingue {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
-    private String nomeLingua;
+    import java.util.Set;
 
-    public Integer getId() {
-        return id;
+    @Entity
+    public class Lingue {
+        @Id
+        @GeneratedValue(strategy = GenerationType.AUTO)
+        private Integer id;
+        private String nomeLingua;
+        @ManyToMany(mappedBy = "lingue")
+        private Set<Personale> personale;
+
+        public enum ELingua {
+            ITALIANO("Italiano"), INGLESE("Inglese"), SPAGNOLO("Spagnolo"), GIAPPONESE("Giapponese"), CINESE("Cinese");
+
+            private final String nome;
+
+            ELingua(String nome) {
+                this.nome = nome;
+            }
+
+            public String getNome() {
+                return nome;
+            }
+        }
+
+
+        public Integer getId() {
+            return id;
+        }
+
+        public String getNomeLingua() {
+            return nomeLingua;
+        }
+
+        public void setId(Integer id) {
+            this.id = id;
+        }
+
+        public void setNomeLingua(String nomeLingua) {
+            this.nomeLingua = nomeLingua;
+        }
     }
-
-    public String getNomeLingua() {
-        return nomeLingua;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public void setNomeLingua(String nomeLingua) {
-        this.nomeLingua = nomeLingua;
-    }
-}
