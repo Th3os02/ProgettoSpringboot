@@ -1,6 +1,7 @@
 package it.itsrizzoli.springboot_gestione_personale.Controller;
 
 import java.util.ArrayList;
+
 import it.itsrizzoli.springboot_gestione_personale.ClassiTemporanee.PersonaleClasse; //TEMPORANEO
 import jakarta.validation.Valid;
 import org.springframework.ui.Model;
@@ -18,21 +19,27 @@ public class ControllerPersonale {
     //QUESTO ARRAYLIST è SOLO QUI PER SIMULARE IL DATABASE
     //PRIMA DI AVER SETTATO IL DATABASE
     static ArrayList<PersonaleClasse> listaPersonale;
+
     public ControllerPersonale() {
         listaPersonale = new ArrayList<>();
-        listaPersonale.add(new PersonaleClasse(1,"Mario", "Rossi", "mario.rossi@museo.com","123456","guida","stagista"));
-        listaPersonale.add(new PersonaleClasse(2,"Luigi", "Verdi", "luigi.verdi@museo.com","987654","Amministratore","indeterminato"));
-        listaPersonale.add(new PersonaleClasse(3,"Anna", "Bianchi", "anna.bianchi@museo.com","000000","Curatore","determinato"));
+        listaPersonale.add(new PersonaleClasse(1, "Mario", "Rossi", "mario.rossi@museo.it", "12345678", "guida", "stagista"));
+        listaPersonale.add(new PersonaleClasse(2, "Luigi", "Verdi", "luigi.verdi@museo.it", "98765412", "Amministratore", "indeterminato"));
+        listaPersonale.add(new PersonaleClasse(3, "Anna", "Bianchi", "anna.bianchi@museo.it", "00000000", "Curatore", "determinato"));
     }
+
     public static List<PersonaleClasse> getListaPersonale() {
         return listaPersonale;
     }
+
     @GetMapping("/")
-    public String login() {
+    public String index() {
         return "Login";
     }
 
-
+    @GetMapping("/login")
+    public String login() {
+        return "Login";
+    }
 
     @GetMapping("gestisci")
     public String personale(Model model) {
@@ -49,7 +56,7 @@ public class ControllerPersonale {
 
     @PostMapping("registra")
     public String register(@Valid PersonaleClasse personaleClasse, BindingResult bindingResult) {
-        if(bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) {
             return "RegistraPersonale";
         }
 
