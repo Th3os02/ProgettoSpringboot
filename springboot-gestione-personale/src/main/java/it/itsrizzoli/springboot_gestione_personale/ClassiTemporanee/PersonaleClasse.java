@@ -23,7 +23,7 @@ public class PersonaleClasse {
     String email;
 
     @NotNull
-    @Min(value = 8, message = "Password minimo con 8 caratteri")
+    @Size(min = 8, message = "Password minimo con 8 caratteri")
     String password;
 
     @NotNull
