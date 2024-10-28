@@ -4,7 +4,7 @@
 
 <ul>
     <!--|| (utente.ruolo == "amministratore") -->
-    <li th:each="evento : ${eventi}" th:if="(${evento.id_personale} == ${utente.id})>
+    <li th:each="evento : ${eventi}" th:if="(${evento.id_personale} == ${utente.id})">
         <span th:text="${evento.titolo_evento}"></span>,
         <span th:text="${evento.tipo}"></span>,
         <span th:text="${evento.data_inizio}"></span>,
