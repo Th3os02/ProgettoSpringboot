@@ -32,7 +32,11 @@
     </tr>
 
 </table>
-<a th:href="@{'Modifica/' + ${personale.id}}">Modifica Password</a>
-<button th:href="@{'Modifica/' + ${personale.id}}">Modifica Password</button>
+<button>
+    <a th:href="@{/HomePage}" style="text-decoration: none">Indietro</a>
+</button>
+<button>
+    <a th:href="@{'Modifica/' + ${personale.id}}" style="text-decoration: none">Modifica Password</a>
+</button>
 </body>
 </html>
