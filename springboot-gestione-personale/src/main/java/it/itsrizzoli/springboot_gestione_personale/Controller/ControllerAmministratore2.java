@@ -36,7 +36,13 @@ public class ControllerAmministratore2 {
     @GetMapping("/aggiungi-persona")
     public String aggiungiPersona(PersonaleForm personaleForm, Model model) {
         model.addAttribute("personaleForm", personaleForm);
-        model.addAttribute("ruoli", ruoloRepository.findAll());
+        List<Ruolo> ruolos = (List<Ruolo>) ruoloRepository.findAll();
+        model.addAttribute("ruoli",
+                           ruolos.stream()
+                                 .filter(ruolo -> !ruolo.getNome()
+                                                        .equals("Amministratore "))
+                                 .findFirst()
+                                 .get());
         model.addAttribute("lingue", lingueRepository.findAll());
         model.addAttribute("contratti", Contratto.EContratto.values());
         return "aggiungi-personale";
@@ -59,7 +65,6 @@ public class ControllerAmministratore2 {
             Ruolo ruolo = new Ruolo();
             ruolo.setId(personaleForm.getRuoloId());
             personale.setRuolo(ruolo);
-
 
 
             Set<Lingue> lingue = new HashSet<>();
