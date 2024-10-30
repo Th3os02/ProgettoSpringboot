@@ -1,4 +1,27 @@
+* {
+    marign: 0;
+    box-sizing: border-box;
+}
 .navbar {
-    display: flex;
     background-color: #4CAF50;
+}
+
+.menu {
+    display: flex;
+    flex-direction: row;
+
+}
+
+.menu > li {
+    background-color: #333333;
+    flex: 1 0 200px;
+    margin: 0 .2em;
+    list-style-type: none;
+    text-align: center;
+}
+
+.menu > li > a {
+    text-decoration: none;
+    padding: 1em;
+    color: #f4f4f4;
 }
