@@ -49,13 +49,13 @@ public class ControllerPersonale {
     }
 
     @RequestMapping(value="/login", method= RequestMethod.POST)
-    public String postLogin(@Valid Credenziali credenziali, Model model, HttpSession session) {
+    public String postLogin(@Valid Credenziali credenziali, HttpSession session) {
        Personale user = userRepository.login(credenziali.getEmail(), credenziali.getPassword());
 
         if(user == null)
             return "redirect:/login";
         else {
-            session.setAttribute("utenteLoggato", user);
+            //session.setAttribute("utenteLoggato", user);
 
             return "redirect:/HomePage";
         }
