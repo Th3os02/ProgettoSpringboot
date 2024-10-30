@@ -3,6 +3,7 @@ package it.itsrizzoli.springboot_gestione_personale.Modelli;
 import jakarta.persistence.*;
 import org.springframework.lang.NonNull;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -16,16 +17,16 @@ public class Personale {
     private String cognome;
     private String email;
     private String password;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ruolo_id", nullable = false, foreignKey = @ForeignKey(name = "FK_personale-ruolo"))
     private Ruolo ruolo;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "personale_lingua", joinColumns = @JoinColumn(name = "personale_id"), inverseJoinColumns =
     @JoinColumn(name = "lingua_id"))
     private Set<Lingue> lingue;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "contratto_id", nullable = false, foreignKey = @ForeignKey(name = "FK_personale-contratto"))
     private Contratto contratto;
 
@@ -77,5 +78,29 @@ public class Personale {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Contratto getContratto() {
+        return contratto;
+    }
+
+    public void setContratto(Contratto contratto) {
+        this.contratto = contratto;
+    }
+
+    public Set<Lingue> getLingue() {
+        return lingue;
+    }
+
+    public void setLingue(Set<Lingue> lingue) {
+        this.lingue = lingue;
+    }
+
+    public Ruolo getRuolo() {
+        return ruolo;
+    }
+
+    public void setRuolo(Ruolo ruolo) {
+        this.ruolo = ruolo;
     }
 }

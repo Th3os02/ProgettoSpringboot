@@ -10,7 +10,8 @@ public class Ruolo {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String nome;
-    @OneToMany(mappedBy = "ruolo")
+
+    @OneToMany(mappedBy = "ruolo",cascade = CascadeType.ALL)
     private Set<Personale> personale;
     public enum ERuolo {
         CURATORE("Curatore"),
