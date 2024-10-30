@@ -1,14 +1,16 @@
 package it.itsrizzoli.springboot_gestione_personale.Modelli;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.time.LocalTime;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 public class Evento {
     @Id
+    @Column(name="id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     private String titolo_evento;
@@ -17,7 +19,9 @@ public class Evento {
 
     private String descrizione_evento;
 
-    private Integer id_personale;
+
+    @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    private Set<Personale> personale;
 
     private Date data_inizio;
     private Date data_fine;
@@ -84,12 +88,12 @@ public class Evento {
         this.tipo = tipo;
     }
 
-    public Integer getId_personale() {
-        return id_personale;
+    public Set<Personale> getPersonale() {
+        return personale;
     }
 
-    public void setId_personale(Integer id_personale) {
-        this.id_personale = id_personale;
+    public void setPersonale(Set<Personale> personale) {
+        this.personale = personale;
     }
 
     public String getStanza() {
