@@ -18,8 +18,8 @@ import java.util.List;
 
 @Controller
 public class ControllerPersonale {
-    @Autowired
 
+    @Autowired
     private PersonaleRepository userRepository;
 
     //QUESTO ARRAYLIST è SOLO QUI PER SIMULARE IL DATABASE
@@ -49,7 +49,7 @@ public class ControllerPersonale {
 
     @RequestMapping(value="/logging", method= RequestMethod.POST)
     public String postLogin(@RequestParam("email") String email, @RequestParam("password") String password, Model model, HttpSession session) {
-        Personale user = userRepository.login(email, password);
+       Personale user = userRepository.login(email, password);
 
         if(user == null)
             return "redirect:/login";
@@ -59,13 +59,11 @@ public class ControllerPersonale {
             return "redirect:/HomePage";
         }
     }
-
     @GetMapping("amministratore/gestisci")
     public String personale(Model model) {
         model.addAttribute("personale", listaPersonale);
         return "ListaPersonale";
     }
-
 
     @GetMapping("amministratore/registra")
     public String register(Model model) {

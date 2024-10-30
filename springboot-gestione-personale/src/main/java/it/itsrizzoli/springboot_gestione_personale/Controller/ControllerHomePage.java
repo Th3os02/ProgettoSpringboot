@@ -23,12 +23,17 @@ RuoloRepository ruoloRepository;
 
 
     @GetMapping("/HomePage")
-    public String homePage(Model model, HttpSession session) {
-        Personale personale = (Personale) session.getAttribute("loggedUser");
-        //List<Ruolo> ruolo = ruoloRepository.findByPersonaleId(personale.getId());
 
+    public String homePage(Model model) {
+        model.addAttribute("ruolo", ControllerPersonale.listaPersonale.get(1).getRuolo().toLowerCase());
+        model.addAttribute("personale", ControllerPersonale.getListaPersonale());  // Questa riga serve per non perdere i dati della tabella del personale quando si torna alla homepage
 
-        model.addAttribute("ruolo", "amministratore"/*ruolo*/);
+    //public String homePage(Model model, HttpSession session) {
+    //    Personale personale = (Personale) session.getAttribute("loggedUser");
+        //List<Ruolo> ruolo = ruoloRepository.findByPersonaleId(personale.getId()); questo era gia commentato prima del merge
+
+        //   model.addAttribute("ruolo", "amministratore"/*ruolo*/);
+
 
         return "HomePage";
     }
@@ -43,7 +48,8 @@ RuoloRepository ruoloRepository;
         return "ListaEventi";
     }
     @GetMapping("/ListaPersonale")
-    public String listaPersonale() {
+    public String listaPersonale(Model model) {
+        model.addAttribute("personale", ControllerPersonale.getListaPersonale());  // Aggiungi lista per ListaPersonale
         return "ListaPersonale";
     }
     @GetMapping("/ModificaUtente")
