@@ -1,16 +1,38 @@
 package it.itsrizzoli.springboot_gestione_personale.Controller;
 
+import it.itsrizzoli.springboot_gestione_personale.Modelli.Personale;
+import it.itsrizzoli.springboot_gestione_personale.Modelli.Ruolo;
+import it.itsrizzoli.springboot_gestione_personale.DAO.RuoloRepository;
+import jakarta.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
+
 
 @Controller
 public class ControllerHomePage {
+
+@Autowired
+RuoloRepository ruoloRepository;
+
+
     @GetMapping("/HomePage")
-    public String homePage(Model model) {
-        model.addAttribute("ruolo", ControllerPersonale.listaPersonale.get(1).getRuolo().toLowerCase());
+    public String homePage(Model model, HttpSession session) {
+        Personale personale = (Personale) session.getAttribute("loggedUser");
+        //List<Ruolo> ruolo = ruoloRepository.findByPersonaleId(personale.getId());
+
+
+        model.addAttribute("ruolo", "amministratore"/*ruolo*/);
+
         return "HomePage";
     }
+
 
     @GetMapping("/Login")
     public String login() {

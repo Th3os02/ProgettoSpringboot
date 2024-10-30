@@ -18,32 +18,22 @@
         <li><a th:href="@{/RegistraPersonale}">Registra Personale</a></li>
     </ul>
 
-    <ul th:case="'curatore'">
+    <ul th:case="'curatore'" class="menu">
         <li><a th:href="@{/ProfiloUtente}">Profilo Utente</a></li>
         <li><a th:href="@{/ListaEventi}">Lista Eventi</a></li>
         <li><a th:href="@{/ListaPersonale}">Lista Personale</a></li>
     </ul>
 
-    <ul th:case="'guida'">
+    <ul th:case="'guida'" class="menu">
         <li><a th:href="@{/ProfiloUtente}">Profilo Utente</a></li>
         <li><a th:href="@{/ListaEventi}">Lista Eventi</a></li>
     </ul>
 
-    <ul th:case="'*'">
+    <ul th:case="'*'" class="menu">
         <li><a th:href="@{/Login}">Esegui l'accesso</a></li>
     </ul>
 
 </nav>
-<!--
-<nav>
-    <ul>
-        <li><a th:href="@{/ProfiloUtente}">Profilo Utente</a></li>
-        <li><a th:href="@{/ListaEventi.html}">Lista Eventi</a></li>
-        <li><a th:href="@{/ListaPersonale.html}">Lista Personale</a></li>
-        <li><a th:href="@{/ModificaUtente.html}">Modifica Utente</a></li>
-        <li><a th:href="@{/RegistraPersonale.html}">Registra Personale</a></li>
-    </ul>
-</nav>
--->
+
 </body>
 </html>
