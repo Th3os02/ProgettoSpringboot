@@ -9,7 +9,6 @@ import java.util.Set;
 @Entity
 public class Evento {
     @Id
-    @Column(name="id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
@@ -20,7 +19,7 @@ public class Evento {
     private String descrizione_evento;
 
 
-    @ManyToMany(mappedBy = "evento")
+    @ManyToMany(mappedBy = "eventi",cascade = CascadeType.ALL)
     private Set<Personale> personale;
 
     private Date data_inizio;
