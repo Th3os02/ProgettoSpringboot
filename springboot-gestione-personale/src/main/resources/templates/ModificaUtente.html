@@ -5,7 +5,7 @@
     <title>Modifica Password</title>
 </head>
 <body>
-<form th:action="@{'/Info-Utente/Modifica/' + ${personale.id}}" method="post" th:object="${cambiaPassword}">
+<form th:action="@{'/ProfiloUtente/Modifica/' + ${personale.id}}" method="post" th:object="${cambiaPassword}">
 
     <table>
         <tr>
@@ -20,7 +20,7 @@
         </tr>
     </table>
     <button>
-        <a th:href="@{'/Info-Utente/'+ ${personale.id}}" style="text-decoration: none">Indietro</a>
+        <a th:href="@{'/ProfiloUtente/'+ ${personale.id}}" style="text-decoration: none">Indietro</a>
     </button>
     <button type="submit">Salva</button>
 </form>

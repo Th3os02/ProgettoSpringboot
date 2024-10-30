@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class ControllerPersonale_2 {
-    @GetMapping("/Info-Utente/{id}")
+    @GetMapping("/ProfiloUtente/{id}")
     public String getUtenteById(@PathVariable("id") int id, Model model) {
 
         PersonaleClasse personale = ControllerPersonale.getListaPersonale().stream()
@@ -24,7 +24,7 @@ public class ControllerPersonale_2 {
         return "ProfiloUtente";
     }
 
-    @GetMapping("/Info-Utente/Modifica/{id}")
+    @GetMapping("/ProfiloUtente/Modifica/{id}")
     public String mostraPaginaModifica(@PathVariable("id") int id, Model model) {
         CambiaPassword cambiaPassword = new CambiaPassword();
         model.addAttribute("cambiaPassword", cambiaPassword);
@@ -35,7 +35,7 @@ public class ControllerPersonale_2 {
         return "ModificaUtente";
     }
 
-    @PostMapping("/Info-Utente/Modifica/{id}")
+    @PostMapping("ProfiloUtente/Modifica/{id}")
     public String salvaNuovaPassword(@PathVariable("id") int id, @Valid @ModelAttribute("cambiaPassword") CambiaPassword cambiaPassword, BindingResult bindingResult, Model model) {
 
         model.addAttribute("personale", ControllerPersonale.getListaPersonale().stream()
@@ -58,6 +58,6 @@ public class ControllerPersonale_2 {
                 .orElse(null);
 
         personale.setPassword(cambiaPassword.getNuovaPassword());
-        return "redirect:/Info-Utente/" + id;
+        return "redirect:/ProfiloUtente/" + id;
     }
 }
