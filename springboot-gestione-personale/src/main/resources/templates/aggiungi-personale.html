@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<h2>Creazione account personale</h2>
+
+<form action="#" th:action="@{/aggiungi-persona}" th:object="${personaleForm}" method="post">
+    <table>
+        <tr>
+            <td>Nome:</td>
+            <td><input type="text" th:field="*{nome}" placeholder="Inserisci il tuo nome" required></td>
+        </tr>
+        <tr>
+            <td>Cognome:</td>
+            <td><input type="text" th:field="*{cognome}" placeholder="Inserisci il tuo cognome" required></td>
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td><input type="email" th:field="*{email}" placeholder="Inserisci la tua email" required></td>
+        </tr>
+        <tr>
+            <td>Password:</td>
+            <td><input type="password" th:field="*{password}" placeholder="Inserisci la tua password" required></td>
+        </tr>
+        <tr>
+            <td>Ruolo:</td>
+            <td>
+                <fieldset>
+                    <div th:each="ruolo : ${ruoli}">
+                        <label>
+                            <input type="radio" name="ruolo" th:value="${ruolo.id}"/>
+                            <span th:text="${ruolo.getNome()}"></span>
+                        </label><br>
+                    </div>
+                </fieldset>
+            </td>
+        </tr>
+        <tr>linguaInput
+            <td>Lingua:</td>
+            <td>
+                <div class="lingua-selector">
+                    <input type="hidden" th:field="*{lingueListId}" id="linguaId"/>
+
+                    <input type="text" placeholder="Inserisci una lingua"
+                           aria-label="Inserisci una lingua" list="list-lingue" id="lingua-input"/>
+
+                    <datalist id="list-lingue" class="suggestions">
+                        <option class="suggestion-item" th:each="lingua : ${lingue}"
+                                th:value="${lingua.nomeLingua}"
+                                th:data-id="${lingua.id}"></option>
+                    </datalist>
+
+                    <button type="button" th:onclick="addLanguage()">Add</button>
+                    <span id="lingueSelezionate">Lingua: </span>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>Contratto:</td>
+            <td>
+                <fieldset>
+                    <div th:each="contratto : ${contratti}">
+                        <label>
+                            <input type="radio" name="contratto" th:field="*{contrattoId}"
+                                   th:value="${contratto.getId()}"/>
+                            <span th:text="${contratto.getNome()}" th:value="${contratto.getId()}"></span>
+                        </label><br>
+                    </div>
+                </fieldset>
+            </td>
+        </tr>
+    </table>
+    <br>
+    <input type="submit" value="Invia">
+</form>
+
+<p>Se clicchi sul pulsante "Invia", i dati del modulo verranno inviati a una pagina chiamata.</p>
+
+
+<script>
+    const lingueSelezionate = [];
+    console.log("prova-log")
+
+    function addLanguage() {
+        const input = document.getElementById('lingua-input');
+        console.log("input", input)
+        const lingua = input.value.trim();
+        console.log("lingua", lingua)
+        if (lingua && !lingueSelezionate.includes(lingua)) {
+
+            if (isPresenteLinguaDataList(lingua)) {
+                lingueSelezionate.push(lingua);
+                updateLingueSelezionate();
+                input.value = ''; // Pulisci il campo di input
+            }
+
+        }
+
+        return false; // Previene l'invio del modulo
+    }
+
+    function updateLingueSelezionate() {
+        const display = document.getElementById('lingueSelezionate');
+        console.log(display)
+        display.textContent = lingueSelezionate.join(', ');
+    }
+
+    function isPresenteLinguaDataList(lingua) {
+        const dataList = document.getElementById('list-lingue');
+        const opzioniArray = [];
+        const opzioni = dataList.getElementsByTagName('option');
+        for (let i = 0; i < opzioni.length; i++) {
+            opzioniArray.push(opzioni[i].value);
+        }
+        console.log(opzioniArray);
+        return opzioniArray.includes(lingua)
+    }
+</script>
+</body>
+</html>
