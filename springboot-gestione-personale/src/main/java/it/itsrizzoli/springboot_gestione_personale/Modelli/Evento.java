@@ -20,7 +20,7 @@ public class Evento {
     private String descrizione_evento;
 
 
-    @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @ManyToMany(mappedBy = "evento")
     private Set<Personale> personale;
 
     private Date data_inizio;
