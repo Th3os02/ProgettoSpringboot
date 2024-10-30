@@ -3,19 +3,23 @@ package it.itsrizzoli.springboot_gestione_personale.Controller;
 import java.util.ArrayList;
 
 import it.itsrizzoli.springboot_gestione_personale.ClassiTemporanee.PersonaleClasse; //TEMPORANEO
+import it.itsrizzoli.springboot_gestione_personale.DAO.PersonaleRepository;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 public class ControllerPersonale {
+    @Autowired
+
+    private PersonaleRepository userRepository;
 
     //QUESTO ARRAYLIST è SOLO QUI PER SIMULARE IL DATABASE
     //PRIMA DI AVER SETTATO IL DATABASE
@@ -40,6 +44,19 @@ public class ControllerPersonale {
     @GetMapping("/login")
     public String login() {
         return "Login";
+    }
+
+    @RequestMapping(value="/logging", method= RequestMethod.POST)
+    public String postLogin(@RequestParam("email") String email, @RequestParam("password") String password, Model model, HttpSession session) {
+        PersonaleClasse utente = userRepository.login(email, password);
+
+        if(utente == null)
+            return "redirect:/login";
+        else {
+            session.setAttribute("utenteLoggato", utente);
+
+            return "redirect:/HomePage";
+        }
     }
 
     @GetMapping("amministratore/gestisci")
