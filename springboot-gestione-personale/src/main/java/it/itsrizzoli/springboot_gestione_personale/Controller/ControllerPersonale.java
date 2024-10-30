@@ -23,15 +23,13 @@ public class ControllerPersonale {
     @Autowired
     private PersonaleRepository userRepository;
 
-    //QUESTO ARRAYLIST è SOLO QUI PER SIMULARE IL DATABASE
-    //PRIMA DI AVER SETTATO IL DATABASE
+    //ARRAYLIST TEMPORANEO
     static ArrayList<PersonaleClasse> listaPersonale;
 
     public ControllerPersonale() {
         listaPersonale = new ArrayList<>();
         listaPersonale.add(new PersonaleClasse(1, "Mario", "Rossi", "mario.rossi@museo.it", "12345678", "Guida", "Stagista"));
         listaPersonale.add(new PersonaleClasse(2, "Luigi", "Verdi", "luigi.verdi@museo.it", "98765412", "Amministratore", "T. Indeterminato"));
-        listaPersonale.add(new PersonaleClasse(3, "Anna", "Bianchi", "anna.bianchi@museo.it", "00000000", "Curatore", "T. Determinato"));
     }
 
     public static List<PersonaleClasse> getListaPersonale() {
@@ -62,40 +60,42 @@ public class ControllerPersonale {
     }
     @GetMapping("amministratore/gestisci")
     public String personale(Model model) {
-        model.addAttribute("personale", listaPersonale);
+        List<Personale> listaPersonale = (List<Personale>) userRepository.findAll(); // Ottiene la lista dal database
+        model.addAttribute("personale", listaPersonale); // Passa i dati alla vista
         return "ListaPersonale";
     }
 
     @GetMapping("amministratore/registra")
     public String register(Model model) {
-        model.addAttribute("personaleClasse", new PersonaleClasse());
+        model.addAttribute("personale", new Personale());
         return "RegistraPersonale";
     }
 
     @PostMapping("amministratore/registra")
-    public String register(@Valid PersonaleClasse personaleClasse, BindingResult bindingResult) {
+    public String register(@Valid Personale personale, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "RegistraPersonale";
         }
-
-        listaPersonale.add(personaleClasse);
+        userRepository.save(personale); // Salva l'oggetto Personale nel database
         return "redirect:/amministratore/gestisci";
     }
+
 
     @GetMapping("amministratore/rimuovi/{id}")
     public String rimuoviPersonale(@PathVariable int id) {
-        listaPersonale.removeIf(persona -> persona.getId() == id);
+        userRepository.deleteById(id); // Rimuove il personale dal database
         return "redirect:/amministratore/gestisci";
     }
 
-    @GetMapping("/amministratore/cerca")
+    /*@GetMapping("/amministratore/cerca")
     public String cercaPersonale(@RequestParam("cognome") String cognome, Model model) {
-        List<PersonaleClasse> risultatiRicerca = listaPersonale.stream()
-                .filter(persona -> persona.getCognome().equalsIgnoreCase(cognome))
+        // Recupera tutti i record e filtra in base al cognome specificato (case-sensitive)
+        List<Personale> risultatiRicerca = userRepository.findAll().stream()
+                .filter(persona -> persona.getCognome().equals(cognome))
                 .toList();
 
         model.addAttribute("personale", risultatiRicerca);
         return "ListaPersonale";
-    }
+    }*/
 }
 
