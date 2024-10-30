@@ -1,9 +1,6 @@
 package it.itsrizzoli.springboot_gestione_personale.Controller;
 
-import it.itsrizzoli.springboot_gestione_personale.DAO.ContrattoRepository;
-import it.itsrizzoli.springboot_gestione_personale.DAO.LingueRepository;
-import it.itsrizzoli.springboot_gestione_personale.DAO.OrarioLavoroRepository;
-import it.itsrizzoli.springboot_gestione_personale.DAO.RuoloRepository;
+import it.itsrizzoli.springboot_gestione_personale.DAO.*;
 import it.itsrizzoli.springboot_gestione_personale.Modelli.*;
 import jakarta.annotation.PostConstruct;
 import jakarta.validation.Valid;
@@ -16,38 +13,24 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.time.LocalTime;
-import java.util.HashSet;
+import java.util.*;
 
 @Controller
-    public class ControllerAmministratore2 {
+public class ControllerAmministratore2 {
 
-        @Autowired
-        private LingueRepository lingueRepository;
+    @Autowired
+    private LingueRepository lingueRepository;
 
-        @Autowired
-        private RuoloRepository ruoloRepository;
+    @Autowired
+    private RuoloRepository ruoloRepository;
 
-        @Autowired
-        private ContrattoRepository contrattoRepository;
+    @Autowired
+    private ContrattoRepository contrattoRepository;
 
-        @Autowired
-        private OrarioLavoroRepository orarioLavoroRepository;
-
-        @PostConstruct
-        public void init() {
-            for (Lingue.ELingua lingua : Lingue.ELingua.values()) {
-                Lingue nuovaLingua = new Lingue();
-                nuovaLingua.setNomeLingua(lingua.getNome());
-                lingueRepository.save(nuovaLingua);
-            }
-
-            for (Ruolo.ERuolo ruolo : Ruolo.ERuolo.values()) {
-                Ruolo nuovaRuolo = new Ruolo();
-                nuovaRuolo.setNome(ruolo.getNome());
-                ruoloRepository.save(nuovaRuolo);
-            }
-
-        }
+    @Autowired
+    private OrarioLavoroRepository orarioLavoroRepository;
+    @Autowired
+    private PersonaleRepository personaleRepository;
 
     // localhost:8080/aggiungi-persona
     @GetMapping("/aggiungi-persona")
@@ -66,6 +49,27 @@ import java.util.HashSet;
             return "aggiungi-personale";
         } else {
             System.out.println(personaleForm);
+            Personale personale = new Personale();
+            personale.setNome(personaleForm.getNome());
+            personale.setCognome(personaleForm.getCognome());
+            personale.setEmail(personaleForm.getEmail());
+            personale.setPassword(personaleForm.getPassword());
+
+            // Impostare le relazioni
+            Ruolo ruolo = new Ruolo();
+            ruolo.setId(personaleForm.getRuoloId());
+            personale.setRuolo(ruolo);
+
+
+
+            Set<Lingue> lingue = new HashSet<>();
+            for (Integer linguaId : personaleForm.getLingueListId()) {
+                Lingue lingua = new Lingue();
+                lingua.setId(linguaId);
+                lingue.add(lingua);
+            }
+            personale.setLingue(lingue);
+            personaleRepository.save(personale);
             return "HomePage/Amministratore";
         }
     }
