@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import it.itsrizzoli.springboot_gestione_personale.ClassiTemporanee.PersonaleClasse; //TEMPORANEO
 import it.itsrizzoli.springboot_gestione_personale.DAO.PersonaleRepository;
+import it.itsrizzoli.springboot_gestione_personale.Modelli.Personale;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,12 +49,12 @@ public class ControllerPersonale {
 
     @RequestMapping(value="/logging", method= RequestMethod.POST)
     public String postLogin(@RequestParam("email") String email, @RequestParam("password") String password, Model model, HttpSession session) {
-        PersonaleClasse utente = userRepository.login(email, password);
+        Personale user = userRepository.login(email, password);
 
-        if(utente == null)
+        if(user == null)
             return "redirect:/login";
         else {
-            session.setAttribute("utenteLoggato", utente);
+            session.setAttribute("utenteLoggato", user);
 
             return "redirect:/HomePage";
         }
