@@ -2,29 +2,27 @@ package it.itsrizzoli.springboot_gestione_personale.Modelli;
 
 import jakarta.persistence.*;
 
-import java.time.LocalTime;
 import java.util.Date;
 import java.util.Set;
 
 @Entity
 public class Evento {
     @Id
-    @Column(name="id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    private String titolo_evento;
+    private String titoloEvento;
 
     private String tipo;
 
-    private String descrizione_evento;
+    private String descrizioneEvento;
 
 
-    @ManyToMany(mappedBy = "evento")
+    @ManyToMany(mappedBy = "eventi",cascade = CascadeType.ALL)
     private Set<Personale> personale;
 
-    private Date data_inizio;
-    private Date data_fine;
+    private Date dataInizio;
+    private Date dataFine;
 
     private Integer limite_persone;
 
@@ -38,37 +36,37 @@ public class Evento {
         this.id = id;
     }
 
-    public String getTitolo_evento() {
-        return titolo_evento;
+    public String getTitoloEvento() {
+        return titoloEvento;
     }
 
-    public void setTitolo_evento(String titolo_evento) {
-        this.titolo_evento = titolo_evento;
+    public void setTitoloEvento(String titolo_evento) {
+        this.titoloEvento = titolo_evento;
     }
 
-    public String getDescrizione_evento() {
-        return descrizione_evento;
+    public String getDescrizioneEvento() {
+        return descrizioneEvento;
     }
 
-    public void setDescrizione_evento(String descrizione_evento) {
-        this.descrizione_evento = descrizione_evento;
+    public void setDescrizioneEvento(String descrizione_evento) {
+        this.descrizioneEvento = descrizione_evento;
     }
 
 
-    public Date getData_inizio() {
-        return data_inizio;
+    public Date getDataInizio() {
+        return dataInizio;
     }
 
-    public void setData_inizio(Date data_inizio) {
-        this.data_inizio = data_inizio;
+    public void setDataInizio(Date data_inizio) {
+        this.dataInizio = data_inizio;
     }
 
-    public Date getData_fine() {
-        return data_fine;
+    public Date getDataFine() {
+        return dataFine;
     }
 
-    public void setData_fine(Date data_fine) {
-        this.data_fine = data_fine;
+    public void setDataFine(Date data_fine) {
+        this.dataFine = data_fine;
     }
 
 

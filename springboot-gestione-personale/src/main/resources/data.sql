@@ -20,15 +20,14 @@ VALUES (1, 'Italiano'),
 
 -- Inserimento dei ruoli
 INSERT INTO ruolo (id, nome)
-VALUES (1, 'Amministratore'),
-       (2, 'Responsabile'),
-       (3, 'Impiegato'),
-       (4, 'Stagista');
+VALUES (0, 'Amminstratore'),
+       (1, 'Curatore'),
+       (2, 'Guida');
 
 -- Inserimento del personale
 INSERT INTO personale (id, nome, cognome, email, password, ruolo_id, contratto_id)
-VALUES (0, 'Rohit', 'Admin', 'admin.admin@museo.com', 'password', 2, 1),
-       (1, 'Mario', 'Rossi', 'mario.rossi@example.com', 'password1', 1, 1),
-       (2, 'Giulia', 'Bianchi', 'giulia.bianchi@example.com', 'password2', 2, 1),
-       (3, 'Luca', 'Verdi', 'luca.verdi@example.com', 'password3', 3, 2),
-       (4, 'Sara', 'Neri', 'sara.neri@example.com', 'password4', 4, 3);
+VALUES (0, 'Rohit', 'Admin', 'admin.admin@museo.com', 'password', 0, 1),
+       (1, 'Mario', 'Rossi', 'mario.rossi@museo.com', 'password1', 1, 1),
+       (2, 'Giulia', 'Bianchi', 'giulia.bianchi@museo.com', 'password2', 2, 1),
+       (3, 'Luca', 'Verdi', 'luca.verdi@museo.com', 'password3', 1, 2),
+       (4, 'Sara', 'Neri', 'sara.neri@museo.com', 'password4', 2, 3);

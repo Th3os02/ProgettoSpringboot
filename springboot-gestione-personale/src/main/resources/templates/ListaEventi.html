@@ -6,17 +6,16 @@
 </head>
 <body>
 <h1>Lista Eventi</h1>
-
-<ul>
+<ul th:each="evento : ${eventi}" th:each="personal : ${evento.personale}">
     <!-- -->
-    <li th:each="evento : ${eventi}" th:each="personal : ${evento.personale}"th:if="(${evento.personsal.id} == ${personale.id} || personale.ruolo == amministratore)">
-        <span th:text="${evento.titolo_evento}"></span>,
+    <li th:if="(${personsal.id} == ${personale.id} || personale.ruolo == 'amministratore')">
+        <span th:text="${evento.titoloEvento}"></span>,
         <span th:text="${evento.tipo}"></span>,
-        <span th:text="${evento.data_inizio}"></span>,
-        <span th:text="${evento.data_fine}"></span>,
+        <span th:text="${evento.dataInizio}"></span>,
+        <span th:text="${evento.dataFine}"></span>,
         <span th:text="${evento.stanza}"></span>
     </li>
-</ul>
 
+</ul>
 </body>
 </html>
