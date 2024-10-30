@@ -86,5 +86,15 @@ public class ControllerPersonale {
         listaPersonale.removeIf(persona -> persona.getId() == id);
         return "redirect:/amministratore/gestisci";
     }
+
+    @GetMapping("/amministratore/cerca")
+    public String cercaPersonale(@RequestParam("cognome") String cognome, Model model) {
+        List<PersonaleClasse> risultatiRicerca = listaPersonale.stream()
+                .filter(persona -> persona.getCognome().equalsIgnoreCase(cognome))
+                .toList();
+
+        model.addAttribute("personale", risultatiRicerca);
+        return "ListaPersonale";
+    }
 }
 
