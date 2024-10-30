@@ -9,6 +9,7 @@ public class ControllerHomePage {
     @GetMapping("/HomePage")
     public String homePage(Model model) {
         model.addAttribute("ruolo", ControllerPersonale.listaPersonale.get(1).getRuolo().toLowerCase());
+        model.addAttribute("personale", ControllerPersonale.getListaPersonale());  // Questa riga serve per non perdere i dati della tabella del personale quando si torna alla homepage
         return "HomePage";
     }
 
@@ -21,7 +22,8 @@ public class ControllerHomePage {
         return "ListaEventi";
     }
     @GetMapping("/ListaPersonale")
-    public String listaPersonale() {
+    public String listaPersonale(Model model) {
+        model.addAttribute("personale", ControllerPersonale.getListaPersonale());  // Aggiungi lista per ListaPersonale
         return "ListaPersonale";
     }
     @GetMapping("/ModificaUtente")
