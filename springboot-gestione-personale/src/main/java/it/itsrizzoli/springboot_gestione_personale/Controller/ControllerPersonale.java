@@ -46,6 +46,19 @@ public class ControllerPersonale {
         return "Login";
     }
 
+    @RequestMapping(value="/logging", method= RequestMethod.POST)
+    public String postLogin(@RequestParam("email") String email, @RequestParam("password") String password, Model model, HttpSession session) {
+        PersonaleClasse utente = userRepository.login(email, password);
+
+        if(utente == null)
+            return "redirect:/login";
+        else {
+            session.setAttribute("utenteLoggato", utente);
+
+            return "redirect:/HomePage";
+        }
+    }
+
     @GetMapping("amministratore/gestisci")
     public String personale(Model model) {
         model.addAttribute("personale", listaPersonale);
