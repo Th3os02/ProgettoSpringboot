@@ -8,8 +8,8 @@
 <h1>Lista Eventi</h1>
 
 <ul>
-    <!--|| (utente.ruolo == "amministratore") TEST -->
-    <li th:each="evento : ${eventi}" th:if="(${evento.id_personale} == ${utente.id} || ruolo.id == 1)">
+    <!--|| (${evento.personsale.id} == ${personale.id} ||) TEST  Come faccio il check se "personale" è un Set ManyToMany??-->
+    <li th:each="evento : ${eventi}" th:if="( personale.ruolo == amministratore)">
         <span th:text="${evento.titolo_evento}"></span>,
         <span th:text="${evento.tipo}"></span>,
         <span th:text="${evento.data_inizio}"></span>,
