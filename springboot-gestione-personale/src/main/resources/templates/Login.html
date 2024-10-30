@@ -55,18 +55,20 @@
     <h2>Accedi al nostro servizio</h2>
 </div>
 
-<form action="logging" method="POST">
+<form action="#" th:action="@{/login}" th:object="${credenziali}" method="POST">
     <table>
         <tr>
             <td><label>Email:</label></td>
-            <td><input type="email" name="email" placeholder="Inserisci l'email" required></td>
+            <td><input th:field="*{email}" type="email" name="email" placeholder="Inserisci l'email" required></td>
+            <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email non valido</td>
         </tr>
+
 
         <tr>
             <td><label>Password:</label></td>
-            <td><input type="text" name="password" placeholder="Inserisci la password" required></td>
+            <td><input th:field="*{password}" type="password" name="password" placeholder="Inserisci la password" required></td>
+            <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password non valido</td>
         </tr>
-
         <tr>
             <td></td>
             <td><input type="submit" value="Login"></td>

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import it.itsrizzoli.springboot_gestione_personale.ClassiTemporanee.PersonaleClasse; //TEMPORANEO
 import it.itsrizzoli.springboot_gestione_personale.DAO.PersonaleRepository;
+import it.itsrizzoli.springboot_gestione_personale.Modelli.Credenziali;
 import it.itsrizzoli.springboot_gestione_personale.Modelli.Personale;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -38,18 +39,18 @@ public class ControllerPersonale {
     }
 
     @GetMapping("/")
-    public String index() {
+    public String index(Credenziali credenziali) {
         return "Login";
     }
 
     @GetMapping("/login")
-    public String login() {
+    public String login(Credenziali credenziali) {
         return "Login";
     }
 
-    @RequestMapping(value="/logging", method= RequestMethod.POST)
-    public String postLogin(@RequestParam("email") String email, @RequestParam("password") String password, Model model, HttpSession session) {
-       Personale user = userRepository.login(email, password);
+    @RequestMapping(value="/login", method= RequestMethod.POST)
+    public String postLogin(@Valid Credenziali credenziali, Model model, HttpSession session) {
+       Personale user = userRepository.login(credenziali.getEmail(), credenziali.getPassword());
 
         if(user == null)
             return "redirect:/login";
