@@ -30,6 +30,10 @@ public class Personale {
     @JoinColumn(name = "contratto_id", nullable = false, foreignKey = @ForeignKey(name = "FK_personale-contratto"))
     private Contratto contratto;
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "personale_evento", joinColumns = @JoinColumn(name = "personale_id"), inverseJoinColumns =
+    @JoinColumn(name = "evento_id"))
+    private Set<Evento> eventi;
 
     public Personale() {}
 
@@ -102,5 +106,13 @@ public class Personale {
 
     public void setRuolo(Ruolo ruolo) {
         this.ruolo = ruolo;
+    }
+
+    public Set<Evento> getEventi() {
+        return eventi;
+    }
+
+    public void setEventi(Set<Evento> eventi) {
+        this.eventi = eventi;
     }
 }
