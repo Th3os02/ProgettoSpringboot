@@ -23,9 +23,9 @@ public class ControllerPersonale {
 
     public ControllerPersonale() {
         listaPersonale = new ArrayList<>();
-        listaPersonale.add(new PersonaleClasse(1, "Mario", "Rossi", "mario.rossi@museo.it", "12345678", "guida", "stagista"));
-        listaPersonale.add(new PersonaleClasse(2, "Luigi", "Verdi", "luigi.verdi@museo.it", "98765412", "Amministratore", "indeterminato"));
-        listaPersonale.add(new PersonaleClasse(3, "Anna", "Bianchi", "anna.bianchi@museo.it", "00000000", "Curatore", "determinato"));
+        listaPersonale.add(new PersonaleClasse(1, "Mario", "Rossi", "mario.rossi@museo.it", "12345678", "Guida", "Stagista"));
+        listaPersonale.add(new PersonaleClasse(2, "Luigi", "Verdi", "luigi.verdi@museo.it", "98765412", "Amministratore", "T. Indeterminato"));
+        listaPersonale.add(new PersonaleClasse(3, "Anna", "Bianchi", "anna.bianchi@museo.it", "00000000", "Curatore", "T. Determinato"));
     }
 
     public static List<PersonaleClasse> getListaPersonale() {
@@ -42,33 +42,33 @@ public class ControllerPersonale {
         return "Login";
     }
 
-    @GetMapping("gestisci")
+    @GetMapping("amministratore/gestisci")
     public String personale(Model model) {
         model.addAttribute("personale", listaPersonale);
         return "ListaPersonale";
     }
 
 
-    @GetMapping("registra")
+    @GetMapping("amministratore/registra")
     public String register(Model model) {
         model.addAttribute("personaleClasse", new PersonaleClasse());
         return "RegistraPersonale";
     }
 
-    @PostMapping("registra")
+    @PostMapping("amministratore/registra")
     public String register(@Valid PersonaleClasse personaleClasse, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "RegistraPersonale";
         }
 
         listaPersonale.add(personaleClasse);
-        return "redirect:/gestisci";
+        return "redirect:/amministratore/gestisci";
     }
 
-    @GetMapping("rimuovi/{id}")
+    @GetMapping("amministratore/rimuovi/{id}")
     public String rimuoviPersonale(@PathVariable int id) {
         listaPersonale.removeIf(persona -> persona.getId() == id);
-        return "redirect:/gestisci";
+        return "redirect:/amministratore/gestisci";
     }
 }
 

@@ -29,7 +29,7 @@
         <td th:text="${persona.ruolo}"></td>
         <td th:text="${persona.contratto}"></td>
         <td>
-            <a th:href="@{/rimuovi/{id}(id=${persona.id})}">
+            <a th:href="@{/amministratore/rimuovi/{id}(id=${persona.id})}">
                 <button>Rimuovi</button>
             </a>
         </td>
@@ -37,7 +37,7 @@
     </tbody>
 </table>
 <button>
-    <a th:href="@{/registra}">Registra nuovo personale</a>
+    <a th:href="@{/amministratore/registra}">Registra nuovo personale</a>
 </button>
 </body>
 </html>
