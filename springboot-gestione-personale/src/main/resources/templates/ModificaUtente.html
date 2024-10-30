@@ -1,21 +1,28 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Modifica Password</title>
-    <!--http://localhost:8080/Info-Utente/Modifica/1-->
 </head>
 <body>
-<form th:action="@{'/Modifica/' + ${personale.id}}" th:object="${personaleClasse}" method="post">
-    <label for="newPassword">Nuova Password:</label>
-    <input type="text" id="newPassword" name="newPassword" required>
-    <br><br>
+<form th:action="@{'/Info-Utente/Modifica/' + ${personale.id}}" method="post" th:object="${cambiaPassword}">
 
-    <label for="confirmPassword">Conferma Nuova Password:</label>
-    <input type="text" id="confirmPassword" name="confirmPassword" required>
-    <br><br>
-
-    <button type="submit">Ritorna al profilo</button>
+    <table>
+        <tr>
+            <td><label for="nuovaPassword">Nuova Password:</label></td>
+            <td><input type="text" id="nuovaPassword" th:field="*{nuovaPassword}" required></td>
+            <td><div th:if="${#fields.hasErrors('nuovaPassword')}" th:errors="*{nuovaPassword}"></div></td>
+        </tr>
+        <tr>
+            <td><label for="confermaPassword">Conferma Nuova Password:</label></td>
+            <td><input type="text" id="confermaPassword" th:field="*{confermaPassword}" required></td>
+            <td><div th:if="${passwordsDiverse}" th:text="${passwordsDiverse}"></div></td>
+        </tr>
+    </table>
+    <button>
+        <a th:href="@{'/Info-Utente/'+ ${personale.id}}" style="text-decoration: none">Indietro</a>
+    </button>
     <button type="submit">Salva</button>
 </form>
-
 </body>
 </html>

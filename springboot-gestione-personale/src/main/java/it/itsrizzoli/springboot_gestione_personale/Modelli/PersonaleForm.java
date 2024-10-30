@@ -21,9 +21,10 @@ public class PersonaleForm {
     @Size(min = 6, message = "La password deve contenere almeno 6 caratteri")
     private String password;
 
-    private List<Long> lingueListId;
+    private List<Integer> lingueListId;
 
     private Integer contrattoId;
+    private Integer ruoloId;
 
     public String getNome() {
         return nome;
@@ -57,11 +58,11 @@ public class PersonaleForm {
         this.password = password;
     }
 
-    public List<Long> getLingueListId() {
+    public List<Integer> getLingueListId() {
         return lingueListId;
     }
 
-    public void setLingueListId(List<Long> lingueListId) {
+    public void setLingueListId(List<Integer> lingueListId) {
         this.lingueListId = lingueListId;
     }
 
@@ -71,6 +72,19 @@ public class PersonaleForm {
 
     public void setContrattoId(Integer contrattoId) {
         this.contrattoId = contrattoId;
+    }
+
+    public Integer getRuoloId() {
+        return ruoloId;
+    }
+
+    public void setRuoloId(Integer ruoloId) {
+        this.ruoloId = ruoloId;
+    }
+
+    @Override
+    public String toString() {
+        return "PersonaleForm{" + "nome='" + nome + '\'' + ", cognome='" + cognome + '\'' + ", email='" + email + '\'' + ", password='" + password + '\'' + ", lingueListId=" + lingueListId + ", contrattoId=" + contrattoId + '}';
     }
 }
 
