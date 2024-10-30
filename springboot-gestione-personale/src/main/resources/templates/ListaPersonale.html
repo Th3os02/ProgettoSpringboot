@@ -7,6 +7,11 @@
 </head>
 <body>
 <h2>Gestione del Personale</h2>
+<form th:action="@{/amministratore/cerca}" method="get">
+    <label for="cognome">Cerca per cognome:</label>
+    <input type="text" id="cognome" name="cognome" placeholder="Inserisci nome...">
+    <button type="submit">Cerca</button>
+</form>
 <table>
     <thead>
     <tr>
