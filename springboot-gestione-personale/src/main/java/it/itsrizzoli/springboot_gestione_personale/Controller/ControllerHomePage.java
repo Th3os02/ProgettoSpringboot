@@ -1,5 +1,6 @@
 package it.itsrizzoli.springboot_gestione_personale.Controller;
 
+import it.itsrizzoli.springboot_gestione_personale.DAO.PersonaleRepository;
 import it.itsrizzoli.springboot_gestione_personale.Modelli.Personale;
 import it.itsrizzoli.springboot_gestione_personale.Modelli.Ruolo;
 import it.itsrizzoli.springboot_gestione_personale.DAO.RuoloRepository;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
+import static it.itsrizzoli.springboot_gestione_personale.Controller.ControllerPersonale.listaPersonale;
+
 
 @Controller
 public class ControllerHomePage {
@@ -21,12 +24,18 @@ public class ControllerHomePage {
 @Autowired
 RuoloRepository ruoloRepository;
 
+@Autowired
+private PersonaleRepository userRepository;
+
 
     @GetMapping("/HomePage")
 
     public String homePage(Model model) {
-        model.addAttribute("ruolo", ControllerPersonale.listaPersonale.get(1).getRuolo().toLowerCase());
-        model.addAttribute("personale", ControllerPersonale.getListaPersonale());  // Questa riga serve per non perdere i dati della tabella del personale quando si torna alla homepage
+        List<Personale> listaPersonale = (List<Personale>) userRepository.findAll();
+        model.addAttribute("ruolo", "amministratore");
+        model.addAttribute("personale", listaPersonale);
+        //model.addAttribute("ruolo", listaPersonale.get(1).getRuolo().toLowerCase());
+        //model.addAttribute("personale", ControllerPersonale.getListaPersonale());  // Questa riga serve per non perdere i dati della tabella del personale quando si torna alla homepage
 
     //public String homePage(Model model, HttpSession session) {
     //    Personale personale = (Personale) session.getAttribute("loggedUser");
@@ -49,7 +58,8 @@ RuoloRepository ruoloRepository;
     }
     @GetMapping("/ListaPersonale")
     public String listaPersonale(Model model) {
-        model.addAttribute("personale", ControllerPersonale.getListaPersonale());  // Aggiungi lista per ListaPersonale
+        List<Personale> listaPersonale = (List<Personale>) userRepository.findAll();
+        model.addAttribute("personale", listaPersonale);
         return "ListaPersonale";
     }
     @GetMapping("/ModificaUtente")
