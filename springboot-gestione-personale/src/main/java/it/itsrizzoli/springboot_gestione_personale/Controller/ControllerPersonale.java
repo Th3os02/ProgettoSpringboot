@@ -24,6 +24,7 @@ public class ControllerPersonale {
     private PersonaleRepository userRepository;
 
     //ARRAYLIST TEMPORANEO
+
     static ArrayList<PersonaleClasse> listaPersonale;
 
     public ControllerPersonale() {
@@ -82,20 +83,21 @@ public class ControllerPersonale {
 
 
     @GetMapping("amministratore/rimuovi/{id}")
-    public String rimuoviPersonale(@PathVariable int id) {
-        userRepository.deleteById(id); // Rimuove il personale dal database
+    public String rimuoviPersonale(@PathVariable Integer id) {
+        if (userRepository.existsById(id)) {
+            userRepository.deleteById(id);
+        } else {
+            System.out.println("ID non trovato: " + id);
+        }
         return "redirect:/amministratore/gestisci";
     }
 
-    /*@GetMapping("/amministratore/cerca")
+    @GetMapping("/amministratore/cerca")
     public String cercaPersonale(@RequestParam("cognome") String cognome, Model model) {
-        // Recupera tutti i record e filtra in base al cognome specificato (case-sensitive)
-        List<Personale> risultatiRicerca = userRepository.findAll().stream()
-                .filter(persona -> persona.getCognome().equals(cognome))
-                .toList();
-
+        List<Personale> risultatiRicerca = userRepository.findByCognome(cognome);
         model.addAttribute("personale", risultatiRicerca);
         return "ListaPersonale";
-    }*/
+    }
+
 }
 

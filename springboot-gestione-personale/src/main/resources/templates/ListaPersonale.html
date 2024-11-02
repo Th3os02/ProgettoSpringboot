@@ -31,8 +31,8 @@
         <td th:text="${persona.cognome}"></td>
         <td th:text="${persona.email}"></td>
         <td th:text="${persona.password}"></td>
-        <td th:text="${persona.ruolo}"></td>
-        <td th:text="${persona.contratto}"></td>
+        <td th:text="${persona.ruolo.nome}"></td>
+        <td th:text="${persona.contratto.tipocontratto}"></td>
         <td>
             <a th:href="@{/amministratore/rimuovi/{id}(id=${persona.id})}">
                 <button class="rimuovi-btn">Rimuovi</button>

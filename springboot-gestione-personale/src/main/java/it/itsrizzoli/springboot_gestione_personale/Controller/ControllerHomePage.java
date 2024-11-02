@@ -1,5 +1,6 @@
 package it.itsrizzoli.springboot_gestione_personale.Controller;
 
+import it.itsrizzoli.springboot_gestione_personale.ClassiTemporanee.PersonaleClasse;
 import it.itsrizzoli.springboot_gestione_personale.DAO.PersonaleRepository;
 import it.itsrizzoli.springboot_gestione_personale.Modelli.Personale;
 import it.itsrizzoli.springboot_gestione_personale.DAO.RuoloRepository;
@@ -71,12 +72,11 @@ private PersonaleRepository userRepository;
     public String registraPersonale() {
         return "RegistraPersonale";
     }
-/*
-    @GetMapping("/HomePage")
+
+    /*@GetMapping("/HomePage")
     public String MostraLista(Model model) {
         List<PersonaleClasse> showLista = ControllerPersonale.getListaPersonale();
         model.addAttribute("ruolo", ControllerPersonale.listaPersonale.get(1).getRuolo());
         return "HomePage";
-    }
-    */
+    }*/
 }
