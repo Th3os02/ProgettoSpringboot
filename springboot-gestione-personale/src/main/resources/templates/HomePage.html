@@ -8,25 +8,25 @@
 </head>
 <body>
 
-<p th:text="'sei ' + ${ruolo}"></p>
+<p th:text="' ' + ${ruolo}" id="welcome"></p>
 <nav th:switch="${ruolo}" class="navbar">
     <ul th:case="'amministratore'" class="menu">
-        <li><a th:href="@{/ProfiloUtente}">Profilo Utente</a></li>
-        <li><a th:href="@{/ListaEventi}">Lista Eventi</a></li>
-        <li><a th:href="@{/ListaPersonale}">Lista Personale</a></li>
-        <li><a th:href="@{/ModificaUtente}">Modifica Utente</a></li>
-        <li><a th:href="@{/RegistraPersonale}">Registra Personale</a></li>
+        <a th:href="@{/ProfiloUtente}" class="navLink"><li>Profilo Utente</li></a>
+        <a th:href="@{/ListaEventi}" class="navLink"><li>Lista Eventi</li></a>
+        <a th:href="@{/ListaPersonale}" class="navLink"><li>Lista Personale</li></a>
+        <a th:href="@{/ModificaUtente}" class="navLink"><li>Modifica Utente</li></a>
+        <a th:href="@{/RegistraPersonale}" class="navLink"><li>Registra Personale</li></a>
     </ul>
 
     <ul th:case="'curatore'" class="menu">
-        <li><a th:href="@{/ProfiloUtente}">Profilo Utente</a></li>
-        <li><a th:href="@{/ListaEventi}">Lista Eventi</a></li>
-        <li><a th:href="@{/ListaPersonale}">Lista Personale</a></li>
+        <a th:href="@{/ProfiloUtente}" class="navLink"><li>Profilo Utente</li></a>
+        <a th:href="@{/ListaEventi}" class="navLink"><li>Lista Eventi</li></a>
+        <a th:href="@{/ListaPersonale}" class="navLink"><li>Lista Personale</li></a>
     </ul>
 
     <ul th:case="'guida'" class="menu">
-        <li><a th:href="@{/ProfiloUtente/1}">Profilo Utente</a></li>
-        <li><a th:href="@{/ListaEventi}">Lista Eventi</a></li>
+        <a th:href="@{/ProfiloUtente/1}" class="navLink"><li>Profilo Utente</li></a>
+        <a th:href="@{/ListaEventi}" class="navLink"><li>Lista Eventi</li></a>
     </ul>
     <ul th:case="null" class="menu">
         <p>Ruolo di valore `null`</p>
