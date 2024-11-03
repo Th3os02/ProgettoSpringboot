@@ -30,14 +30,16 @@
     </ul>
     <ul th:case="null" class="menu">
         <p>Ruolo di valore `null`</p>
-        <li><a th:href="@{/Login}">Esegui l'accesso</a></li>
+        <a th:href="@{/}" class="navLink"><li>Esegui l'accesso</li></a>
     </ul>
     <ul th:case="*" class="menu">
         <p>Ruolo di valore non riconosciuto tra amministratore | curatore | guida </p>
-        <li><a th:href="@{/Login}">Esegui l'accesso</a></li>
+        <a th:href="@{/}" class="navLink"><li>Esegui l'accesso</li></a>
     </ul>
 
 </nav>
-
+<main>
+    <a th:href="@{/}" id="back">Torna al login</a>
+</main>
 </body>
 </html>
