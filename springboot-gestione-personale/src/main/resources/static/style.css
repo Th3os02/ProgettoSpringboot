@@ -93,7 +93,7 @@ p {
     border-radius: 100%;
     background: linear-gradient(to right, rgba(50, 50, 50, 0.4), rgba(200, 200, 200, 0.8), rgba(50, 50, 50, 0.4));
     transform: scaleX(0);
-    transition: transform 0.2s ease-out; /* Transition for scaling effect */
+    transition: transform 0.2s ease-out;
 }
 
 .navLink:hover::after {
