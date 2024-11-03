@@ -31,3 +31,27 @@ VALUES (0, 'Rohit', 'Admin', 'admin.admin@museo.com', 'password', 0, 1),
        (2, 'Giulia', 'Bianchi', 'giulia.bianchi@museo.com', 'password2', 2, 1),
        (3, 'Luca', 'Verdi', 'luca.verdi@museo.com', 'password3', 1, 2),
        (4, 'Sara', 'Neri', 'sara.neri@museo.com', 'password4', 2, 3);
+-- Inserimento di eventi nella tabella evento con il campo id specificato
+INSERT INTO evento (id, titolo_evento, tipo, descrizione_evento, data_inizio, data_fine, limite_persone, stanza)
+VALUES
+    (1, 'Conferenza Annuale', 'Conferenza', 'Evento annuale aziendale', '2024-05-20', '2024-05-21', 150, 'Sala Conferenze'),
+    (2, 'Workshop di Innovazione', 'Workshop', 'Laboratorio di idee innovative', '2024-06-10', '2024-06-10', 50, 'Aula Magna'),
+    (3, 'Meeting Team', 'Meeting', 'Riunione mensile del team', '2024-07-01', '2024-07-01', 20, 'Sala Riunioni 3'),
+    (4, 'Formazione Sicurezza', 'Formazione', 'Corso di sicurezza sul lavoro', '2024-08-15', '2024-08-16', 30, 'Aula Formazione');
+
+-- Collegamento tra eventi e personale nella tabella di join personale_evento con id evento specifico
+-- Evento ID 1 associato a personale con ID 1, 2, 3
+INSERT INTO personale_evento (evento_id, personale_id) VALUES
+                                                           (1, 1), (1, 2), (1, 3);
+
+-- Evento ID 2 associato a personale con ID 2, 4
+INSERT INTO personale_evento (evento_id, personale_id) VALUES
+                                                           (2, 2), (2, 4);
+
+-- Evento ID 3 associato a personale con ID 1, 3, 4
+INSERT INTO personale_evento (evento_id, personale_id) VALUES
+                                                           (3, 1), (3, 3), (3, 4);
+
+-- Evento ID 4 associato a tutto il personale (ID 1, 2, 3, 4)
+INSERT INTO personale_evento (evento_id, personale_id) VALUES
+                                                           (4, 1), (4, 2), (4, 3), (4, 4);

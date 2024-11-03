@@ -1,14 +1,15 @@
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Lista Eventi</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/stileListaPersonale.css}"> <!-- Non va? -->
+    <link rel="stylesheet" type="text/css" th:href="@{/stileListaPersonale.css}">
 </head>
 <body>
 <h1>Lista Eventi</h1>
 <ul th:each="evento : ${eventi}" >
     <!-- -->
-    <li th:each="personal : ${evento.personale}" th:if="(${personsal.id} == ${personale.id} || personale.ruolo == 'amministratore')">
+    <li>
         <span th:text="${evento.titoloEvento}"></span>,
         <span th:text="${evento.tipo}"></span>,
         <span th:text="${evento.dataInizio}"></span>,
