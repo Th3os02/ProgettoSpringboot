@@ -3,7 +3,9 @@ package it.itsrizzoli.springboot_gestione_personale.Controller;
 import java.util.ArrayList;
 
 import it.itsrizzoli.springboot_gestione_personale.ClassiTemporanee.PersonaleClasse; //TEMPORANEO
+import it.itsrizzoli.springboot_gestione_personale.DAO.ContrattoRepository;
 import it.itsrizzoli.springboot_gestione_personale.DAO.PersonaleRepository;
+import it.itsrizzoli.springboot_gestione_personale.DAO.RuoloRepository;
 import it.itsrizzoli.springboot_gestione_personale.Modelli.Credenziali;
 import it.itsrizzoli.springboot_gestione_personale.Modelli.Personale;
 import jakarta.servlet.http.HttpSession;
@@ -22,6 +24,12 @@ public class ControllerPersonale {
 
     @Autowired
     private PersonaleRepository userRepository;
+
+    @Autowired
+    private ContrattoRepository contrattoRepository;
+
+    @Autowired
+    private RuoloRepository ruoloRepository;
 
     //ARRAYLIST TEMPORANEO
 
@@ -60,32 +68,31 @@ public class ControllerPersonale {
         }
     }
     @GetMapping("amministratore/gestisci")
-    public String personale(Model model) {
+    public String personale(Model model,HttpSession session) {
+        Personale personale = (Personale) session.getAttribute("utenteLoggato");
+        if (personale == null) {
+            return "redirect:/login";
+        }
+        if (!personale.getRuolo().getNome().equals("Amministratore")){
+            return "redirect:/login";
+        }
         List<Personale> listaPersonale = (List<Personale>) userRepository.findAll(); // Ottiene la lista dal database
         model.addAttribute("personale", listaPersonale); // Passa i dati alla vista
         return "ListaPersonale";
     }
 
-    @GetMapping("amministratore/registra")
-    public String register(Model model) {
-        model.addAttribute("personale", new Personale());
-        return "RegistraPersonale";
-    }
-
-    @PostMapping("amministratore/registra")
-    public String register(@Valid Personale personale, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return "RegistraPersonale";
-        }
-        userRepository.save(personale); // Salva l'oggetto Personale nel database
-        return "redirect:/amministratore/gestisci";
-    }
-
-
     @GetMapping("amministratore/rimuovi/{id}")
     public String rimuoviPersonale(@PathVariable Integer id) {
         if (userRepository.existsById(id)) {
-            userRepository.deleteById(id);
+            Personale personale = userRepository.findById(id).orElse(null);
+            if (personale != null) {
+                personale.setContratto(null);
+                personale.setRuolo(null);
+                personale.getLingue().clear();
+                personale.getEventi().clear();
+                userRepository.save(personale);
+                userRepository.deleteById(id);
+            }
         } else {
             System.out.println("ID non trovato: " + id);
         }
