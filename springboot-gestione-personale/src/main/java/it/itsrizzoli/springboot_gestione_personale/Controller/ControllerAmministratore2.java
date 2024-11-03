@@ -33,7 +33,7 @@ public class ControllerAmministratore2 {
     private PersonaleRepository personaleRepository;
 
     // localhost:8080/aggiungi-persona
-    @GetMapping("/aggiungi-persona")
+    @GetMapping("/aggiungi-personale")
     public String aggiungiPersona(PersonaleForm personaleForm, Model model) {
         model.addAttribute("personaleForm", personaleForm);
         List<Ruolo> ruolos = (List<Ruolo>) ruoloRepository.findAll();
@@ -75,7 +75,7 @@ public class ControllerAmministratore2 {
             }
             personale.setLingue(lingue);
             personaleRepository.save(personale);
-            return "HomePage/Amministratore";
+            return "redirect:/amministratore/gestisci";
         }
     }
 }
