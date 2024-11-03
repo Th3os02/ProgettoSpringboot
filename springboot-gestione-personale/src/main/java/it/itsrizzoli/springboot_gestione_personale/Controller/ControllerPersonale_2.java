@@ -1,25 +1,25 @@
 package it.itsrizzoli.springboot_gestione_personale.Controller;
 
-
-import it.itsrizzoli.springboot_gestione_personale.ClassiTemporanee.PersonaleClasse;
 import it.itsrizzoli.springboot_gestione_personale.Modelli.CambiaPassword;
+import it.itsrizzoli.springboot_gestione_personale.Modelli.Personale;
+import it.itsrizzoli.springboot_gestione_personale.DAO.PersonaleRepository; // Assicurati di importare il repository
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-
 @Controller
 public class ControllerPersonale_2 {
+
+    @Autowired
+    private PersonaleRepository personaleRepository;
+
     @GetMapping("/ProfiloUtente/{id}")
     public String getUtenteById(@PathVariable("id") int id, Model model) {
-
-        PersonaleClasse personale = ControllerPersonale.getListaPersonale().stream()
-                .filter(p -> p.getId() == id)
-                .findFirst()
-                .orElse(null);
-
+        // Recupera l'utente dal database
+        Personale personale = personaleRepository.findById(id).orElse(null);
         model.addAttribute("personale", personale);
         return "ProfiloUtente";
     }
@@ -28,20 +28,17 @@ public class ControllerPersonale_2 {
     public String mostraPaginaModifica(@PathVariable("id") int id, Model model) {
         CambiaPassword cambiaPassword = new CambiaPassword();
         model.addAttribute("cambiaPassword", cambiaPassword);
-        model.addAttribute("personale", ControllerPersonale.getListaPersonale().stream()
-                .filter(p -> p.getId() == id)
-                .findFirst()
-                .orElse(null));
+        Personale personale = personaleRepository.findById(id).orElse(null);
+        model.addAttribute("personale", personale);
         return "ModificaUtente";
     }
 
-    @PostMapping("ProfiloUtente/Modifica/{id}")
-    public String salvaNuovaPassword(@PathVariable("id") int id, @Valid @ModelAttribute("cambiaPassword") CambiaPassword cambiaPassword, BindingResult bindingResult, Model model) {
-
-        model.addAttribute("personale", ControllerPersonale.getListaPersonale().stream()
-                .filter(p -> p.getId() == id)
-                .findFirst()
-                .orElse(null));
+    @PostMapping("/ProfiloUtente/Modifica/{id}")
+    public String salvaNuovaPassword(@PathVariable("id") int id,
+                                     @Valid @ModelAttribute("cambiaPassword") CambiaPassword cambiaPassword,
+                                     BindingResult bindingResult,
+                                     Model model) {
+        Personale personale = personaleRepository.findById(id).orElse(null);
 
         if (bindingResult.hasErrors()) {
             return "ModificaUtente";
@@ -52,12 +49,11 @@ public class ControllerPersonale_2 {
             return "ModificaUtente";
         }
 
-        PersonaleClasse personale = ControllerPersonale.getListaPersonale().stream()
-                .filter(p -> p.getId() == id)
-                .findFirst()
-                .orElse(null);
+        if (personale != null) {
+            personale.setPassword(cambiaPassword.getNuovaPassword());
+            personaleRepository.save(personale);
+        }
 
-        personale.setPassword(cambiaPassword.getNuovaPassword());
         return "redirect:/ProfiloUtente/" + id;
     }
 }

@@ -84,4 +84,9 @@ public class Contratto {
     public void setPersonale(Set<Personale> personale) {
         this.personale = personale;
     }
+
+    @Override
+    public String toString() {
+        return tipocontratto;
+    }
 }

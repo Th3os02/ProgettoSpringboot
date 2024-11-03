@@ -6,7 +6,9 @@ public class CambiaPassword {
 
     @Size(min = 8, message = "La password deve contenere almeno 8 caratteri.")
     private String nuovaPassword;
-    private String ConfermaPassword;
+
+    @Size(min = 8, message = "La conferma della password deve contenere almeno 8 caratteri.")
+    private String confermaPassword;
 
     public String getNuovaPassword() {
         return nuovaPassword;
@@ -17,10 +19,10 @@ public class CambiaPassword {
     }
 
     public String getConfermaPassword() {
-        return ConfermaPassword;
+        return confermaPassword;
     }
 
     public void setConfermaPassword(String confermaPassword) {
-        ConfermaPassword = confermaPassword;
+        this.confermaPassword = confermaPassword;
     }
 }
