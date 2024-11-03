@@ -20,7 +20,7 @@ VALUES (1, 'Italiano'),
 
 -- Inserimento dei ruoli
 INSERT INTO ruolo (id, nome)
-VALUES (0, 'Amminstratore'),
+VALUES (0, 'Amministratore'),
        (1, 'Curatore'),
        (2, 'Guida');
 

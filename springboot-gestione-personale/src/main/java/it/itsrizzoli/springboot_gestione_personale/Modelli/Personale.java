@@ -18,7 +18,7 @@ public class Personale {
     private String email;
     private String password;
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ruolo_id", nullable = false, foreignKey = @ForeignKey(name = "FK_personale-ruolo"))
+    @JoinColumn(name = "ruolo_id", nullable = true, foreignKey = @ForeignKey(name = "FK_personale-ruolo"))
     private Ruolo ruolo;
 
     @ManyToMany(cascade = CascadeType.ALL)
@@ -27,7 +27,7 @@ public class Personale {
     private Set<Lingue> lingue;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "contratto_id", nullable = false, foreignKey = @ForeignKey(name = "FK_personale-contratto"))
+    @JoinColumn(name = "contratto_id", nullable = true, foreignKey = @ForeignKey(name = "FK_personale-contratto"))
     private Contratto contratto;
 
     @ManyToMany(cascade = CascadeType.ALL)
