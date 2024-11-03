@@ -41,7 +41,8 @@ private PersonaleRepository userRepository;
         String ruolo = personale.getRuolo().getNome().toLowerCase();
         model.addAttribute("ruolo", ruolo);
 
-
+        Integer userId = personale.getId();
+        model.addAttribute("userId", userId);
         return "HomePage";
     }
 

@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" th:href="@{/style.css}" />
-
     <title>IL Museo</title>
 </head>
 <body>
@@ -11,7 +10,7 @@
 <p th:text="' ' + ${ruolo}" id="welcome"></p>
 <nav th:switch="${ruolo}" class="navbar">
     <ul th:case="'amministratore'" class="menu">
-        <a th:href="@{/ProfiloUtente}" class="navLink"><li>Profilo Utente</li></a>
+        <a th:href="@{'/ProfiloUtente/' + ${userId}}" class="navLink"><li>Profilo Utente</li></a>
         <a th:href="@{/ListaEventi}" class="navLink"><li>Lista Eventi</li></a>
         <a th:href="@{/ListaPersonale}" class="navLink"><li>Lista Personale</li></a>
         <a th:href="@{/ModificaUtente}" class="navLink"><li>Modifica Utente</li></a>
@@ -19,13 +18,13 @@
     </ul>
 
     <ul th:case="'curatore'" class="menu">
-        <a th:href="@{/ProfiloUtente}" class="navLink"><li>Profilo Utente</li></a>
+        <a th:href="@{'/ProfiloUtente/' + ${userId}}" class="navLink"><li>Profilo Utente</li></a>
         <a th:href="@{/ListaEventi}" class="navLink"><li>Lista Eventi</li></a>
         <a th:href="@{/ListaPersonale}" class="navLink"><li>Lista Personale</li></a>
     </ul>
 
     <ul th:case="'guida'" class="menu">
-        <a th:href="@{/ProfiloUtente/1}" class="navLink"><li>Profilo Utente</li></a>
+        <a th:href="@{'/ProfiloUtente/' + ${userId}}" class="navLink"><li>Profilo Utente</li></a>
         <a th:href="@{/ListaEventi}" class="navLink"><li>Lista Eventi</li></a>
     </ul>
     <ul th:case="null" class="menu">
