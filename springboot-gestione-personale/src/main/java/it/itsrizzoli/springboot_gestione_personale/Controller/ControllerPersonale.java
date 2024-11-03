@@ -54,7 +54,7 @@ public class ControllerPersonale {
         if(user == null)
             return "redirect:/login";
         else {
-            //session.setAttribute("utenteLoggato", user);
+            session.setAttribute("utenteLoggato", user);
 
             return "redirect:/HomePage";
         }
