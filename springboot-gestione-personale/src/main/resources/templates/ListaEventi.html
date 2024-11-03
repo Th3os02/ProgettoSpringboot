@@ -6,17 +6,26 @@
     <link rel="stylesheet" type="text/css" th:href="@{/stileListaPersonale.css}">
 </head>
 <body>
-<h1>Lista Eventi</h1>
-<ul th:each="evento : ${eventi}" >
-    <!-- -->
-    <li>
-        <span th:text="${evento.titoloEvento}"></span>,
-        <span th:text="${evento.tipo}"></span>,
-        <span th:text="${evento.dataInizio}"></span>,
-        <span th:text="${evento.dataFine}"></span>,
-        <span th:text="${evento.stanza}"></span>
-    </li>
-
-</ul>
+<h2>Lista Eventi</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Titolo</th>
+        <th>Tipo</th>
+        <th>Data Inizio</th>
+        <th>Data Fine</th>
+        <th>Stanza</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="evento : ${eventi}">
+        <td th:text="${evento.titoloEvento}"></td>
+        <td th:text="${evento.tipo}"></td>
+        <td th:text="${evento.dataInizio}"></td>
+        <td th:text="${evento.dataFine}"></td>
+        <td th:text="${evento.stanza}"></td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>
