@@ -7,13 +7,19 @@ body {
     background: rgb(20, 20, 30);
 }
 
+h2 {
+    font-family: Arial, sans-serif;
+}
+
 p {
     color: white;
+    font-family: Arial, sans-serif;
 }
 
 #welcome {
-    color: #005f73;
-    margin-left: 5px;
+    color: #00afb9;
+    margin-top: 20px;
+    margin-left: 20px;
 }
 
 #welcome::before {
