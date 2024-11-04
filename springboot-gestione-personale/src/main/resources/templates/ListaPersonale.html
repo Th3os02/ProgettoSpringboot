@@ -34,6 +34,11 @@
         <td th:text="${persona.ruolo.nome}"></td>
         <td th:text="${persona.contratto.tipocontratto}"></td>
         <td>
+            <a th:href="@{/amministratore/modifica/{id}(id=${persona.id})}">
+                <button class="modifica-btn">Modifica</button>
+            </a>
+        </td>
+        <td>
             <a th:href="@{/amministratore/rimuovi/{id}(id=${persona.id})}">
                 <button class="rimuovi-btn">Rimuovi</button>
             </a>

@@ -13,6 +13,8 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
+import it.itsrizzoli.springboot_gestione_personale.Modelli.Ruolo;
+import it.itsrizzoli.springboot_gestione_personale.Modelli.Contratto;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,20 +32,6 @@ public class ControllerPersonale {
 
     @Autowired
     private RuoloRepository ruoloRepository;
-
-    //ARRAYLIST TEMPORANEO
-
-    static ArrayList<PersonaleClasse> listaPersonale;
-
-    public ControllerPersonale() {
-        listaPersonale = new ArrayList<>();
-        listaPersonale.add(new PersonaleClasse(1, "Mario", "Rossi", "mario.rossi@museo.it", "12345678", "Guida", "Stagista"));
-        listaPersonale.add(new PersonaleClasse(2, "Luigi", "Verdi", "luigi.verdi@museo.it", "98765412", "Amministratore", "T. Indeterminato"));
-    }
-
-    public static List<PersonaleClasse> getListaPersonale() {
-        return listaPersonale;
-    }
 
     @GetMapping("/")
     public String index(Credenziali credenziali) {
@@ -104,6 +92,41 @@ public class ControllerPersonale {
         List<Personale> risultatiRicerca = userRepository.findByCognome(cognome);
         model.addAttribute("personale", risultatiRicerca);
         return "ListaPersonale";
+    }
+
+
+
+
+    @GetMapping("amministratore/modifica/{id}")
+    public String mostraModificaPersonale(@PathVariable Integer id, Model model) {
+        Personale personale = userRepository.findById(id).orElse(null);
+        if (personale == null) {
+            return "redirect:/amministratore/gestisci";
+        }
+        model.addAttribute("ruoli", ruoloRepository.findAll());
+        model.addAttribute("contratti", contrattoRepository.findAll());
+        model.addAttribute("personale", personale);
+        return "ModificaPersonale";
+    }
+
+    @PostMapping("amministratore/modifica/{id}")
+    public String salvaModificaPersonale(@PathVariable Integer id, @ModelAttribute("personale") Personale personaleModificato) {
+        Personale personale = userRepository.findById(id).orElse(null);
+        if (personale != null) {
+            personale.setNome(personaleModificato.getNome());
+            personale.setCognome(personaleModificato.getCognome());
+            personale.setEmail(personaleModificato.getEmail());
+            personale.setPassword(personaleModificato.getPassword());
+
+            Ruolo ruolo = ruoloRepository.findById(personaleModificato.getRuolo().getId()).orElse(null);
+            Contratto contratto = contrattoRepository.findById(personaleModificato.getContratto().getId()).orElse(null);
+
+            personale.setRuolo(ruolo);
+            personale.setContratto(contratto);
+
+            userRepository.save(personale);
+        }
+        return "redirect:/amministratore/gestisci";
     }
 
 }

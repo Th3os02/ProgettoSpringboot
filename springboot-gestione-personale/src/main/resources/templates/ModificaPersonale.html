@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Modifica Dati Personale</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/stileListaPersonale.css}">
+</head>
+<body>
+<h2>Modifica Dati Personale</h2>
+<form th:action="@{/amministratore/modifica/{id}(id=${personale.id})}" th:object="${personale}" method="post">
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome" th:field="*{nome}" />
+
+    <label for="cognome">Cognome:</label>
+    <input type="text" id="cognome" th:field="*{cognome}" />
+
+    <label for="email">Email:</label>
+    <input type="text" id="email" th:field="*{email}" />
+
+    <label for="password">Password:</label>
+    <input type="text" id="password" th:field="*{password}" th:placeholder="${personale.getPassword()}" />
+
+    <label for="ruolo">Ruolo:</label>
+    <select id="ruolo" th:field="*{ruolo.id}">
+        <option th:each="ruolo : ${ruoli}" th:value="${ruolo.id}" th:text="${ruolo.nome}"></option>
+    </select>
+
+    <label for="contratto">Contratto:</label>
+    <select id="contratto" th:field="*{contratto.id}">
+        <option th:each="contratto : ${contratti}" th:value="${contratto.id}" th:text="${contratto.tipocontratto}"></option>
+    </select>
+
+    <button type="submit">Salva Modifiche</button>
+    <a th:href="@{/amministratore/gestisci}"><button type="button">Annulla</button></a>
+</form>
+</body>
+</html>
