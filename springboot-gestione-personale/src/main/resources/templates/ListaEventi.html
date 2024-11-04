@@ -7,7 +7,7 @@
 </head>
 <body>
 <h2>Lista Eventi</h2>
-<table>
+<table th:if="${eventi.size()} != 0" >
     <thead>
     <tr>
         <th>Titolo</th>
