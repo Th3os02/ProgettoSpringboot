@@ -1,6 +1,9 @@
 package it.itsrizzoli.springboot_gestione_personale.Modelli;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import org.springframework.lang.NonNull;
 
 import java.util.HashSet;
@@ -15,10 +18,21 @@ public class Personale {
             allocationSize = 1)
     private Integer id;
 
+    @NotNull
+    @Size(min = 3, max = 25)
     private String nome;
+
+    @NotNull
+    @Size(min = 4, max = 25)
     private String cognome;
+
+    @Pattern(regexp = "^[a-zA-Z]+\\.[a-zA-Z]+@museo\\.com$", message = "Formato corretto 'nome.cognome@museo.com' ")
     private String email;
+
+    @NotNull
+    @Size(min = 8, message = "Password minimo con 8 caratteri")
     private String password;
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ruolo_id", nullable = true, foreignKey = @ForeignKey(name = "FK_personale-ruolo"))
     private Ruolo ruolo;
