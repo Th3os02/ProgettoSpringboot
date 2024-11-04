@@ -39,15 +39,7 @@ public class ControllerAmministratore2 {
             return "redirect:/login";
         }
 
-        model.addAttribute("personaleForm", personaleForm);
-        List<Ruolo> ruolos = (List<Ruolo>) ruoloRepository.findAll();
-        ruolos = ruolos.stream()
-                       .filter(ruolo -> !ruolo.getNome()
-                                              .equals(Ruolo.ERuolo.AMMINISTRATORE.getNome()))
-                       .toList();
-        model.addAttribute("ruoli", ruolos);
-        model.addAttribute("lingue", lingueRepository.findAll());
-        model.addAttribute("contratti", contrattoRepository.findAll());
+        setModelForm(personaleForm, model);
         return "aggiungi-personale";
     }
 
@@ -62,7 +54,9 @@ public class ControllerAmministratore2 {
 
         if (result.hasErrors()) {
             System.out.println(result.getAllErrors());
-            return "redirect:/nuovo-personale";
+            model.addAttribute("errors", result.getAllErrors());
+            setModelForm(personaleForm, model);
+            return "aggiungi-personale";
         }
 
         System.out.println(personaleForm);
@@ -85,6 +79,7 @@ public class ControllerAmministratore2 {
         // Eventi
         personale.setEventi(new HashSet<>());
 
+        // Lingue
         Set<Lingue> lingue = new HashSet<>();
         if (personaleForm.getLingueListId() != null) {
             personaleForm.getLingueListId()
@@ -98,7 +93,18 @@ public class ControllerAmministratore2 {
 
         personaleRepository.save(personale);
         return "redirect:/amministratore/gestisci";
+    }
 
+    private void setModelForm(PersonaleForm personaleForm, Model model) {
+        model.addAttribute("personaleForm", personaleForm);
+        List<Ruolo> ruolos = (List<Ruolo>) ruoloRepository.findAll();
+        ruolos = ruolos.stream()
+                       .filter(ruolo -> !ruolo.getNome()
+                                              .equals(Ruolo.ERuolo.AMMINISTRATORE.getNome()))
+                       .toList();
+        model.addAttribute("ruoli", ruolos);
+        model.addAttribute("lingue", lingueRepository.findAll());
+        model.addAttribute("contratti", contrattoRepository.findAll());
     }
 
     private boolean verificaSessioneRuolo(HttpSession session) {

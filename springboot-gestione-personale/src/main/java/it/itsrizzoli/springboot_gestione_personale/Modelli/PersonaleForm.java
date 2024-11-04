@@ -1,25 +1,27 @@
 package it.itsrizzoli.springboot_gestione_personale.Modelli;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
+
 import java.util.List;
 
 public class PersonaleForm {
 
     @NotBlank(message = "Il nome è obbligatorio")
+    @Size(min = 3, max = 25, message = "Il nome deve avere tra 3 e 25 caratteri")
     private String nome;
 
     @NotBlank(message = "Il cognome è obbligatorio")
+    @Size(min = 3, max = 25, message = "Il cognome deve avere tra 3 e 25 caratteri")
     private String cognome;
 
     @NotBlank(message = "L'email è obbligatoria")
-    @Email(message = "Email non valida")
+    @Pattern(regexp = "^[a-zA-Z]+\\.[a-zA-Z]+@museo\\.com$", message = "Formato corretto 'nome.cognome@museo.com' ")
     private String email;
 
     @NotBlank(message = "La password è obbligatoria")
-    @Size(min = 6, message = "La password deve contenere almeno 6 caratteri")
+    @Size(min = 8, message = "Password minimo con 8 caratteri")
     private String password;
+
 
     private List<Integer> lingueListId;
 
