@@ -2,17 +2,15 @@ package it.itsrizzoli.springboot_gestione_personale.Controller;
 
 import it.itsrizzoli.springboot_gestione_personale.DAO.*;
 import it.itsrizzoli.springboot_gestione_personale.Modelli.*;
-import jakarta.annotation.PostConstruct;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.time.LocalTime;
 import java.util.*;
 
 @Controller
@@ -36,7 +34,11 @@ public class ControllerAmministratore2 {
 
     // localhost:8080/aggiungi-persona
     @GetMapping("/nuovo-personale")
-    public String aggiungiPersona(PersonaleForm personaleForm, Model model) {
+    public String aggiungiPersona(PersonaleForm personaleForm, Model model, HttpSession session) {
+        if (verificaSessioneRuolo(session)) {
+            return "redirect:/login";
+        }
+
         model.addAttribute("personaleForm", personaleForm);
         List<Ruolo> ruolos = (List<Ruolo>) ruoloRepository.findAll();
         ruolos = ruolos.stream()
@@ -50,11 +52,19 @@ public class ControllerAmministratore2 {
     }
 
     @PostMapping("/aggiungi-persona")
-    public String aggiungiPersona(@Valid PersonaleForm personaleForm, BindingResult result, Model model) {
+    public String aggiungiPersona(@Valid PersonaleForm personaleForm,
+                                  BindingResult result,
+                                  Model model,
+                                  HttpSession session) {
+        if (verificaSessioneRuolo(session)) {
+            return "redirect:/login";
+        }
+
         if (result.hasErrors()) {
             System.out.println(result.getAllErrors());
             return "redirect:/nuovo-personale";
         }
+
         System.out.println(personaleForm);
         Personale personale = new Personale();
         personale.setNome(personaleForm.getNome());
@@ -76,7 +86,12 @@ public class ControllerAmministratore2 {
         personale.setEventi(new HashSet<>());
 
         Set<Lingue> lingue = new HashSet<>();
-        personaleForm.getLingueListId().forEach(id-> lingue.add(lingueRepository.findById(id).get()));
+        if (personaleForm.getLingueListId() != null) {
+            personaleForm.getLingueListId()
+                         .forEach(id -> lingue.add(lingueRepository.findById(id)
+                                                                   .get()));
+
+        }
 
         personale.setLingue(lingue);
         personale.setRuolo(ruolo);
@@ -84,5 +99,15 @@ public class ControllerAmministratore2 {
         personaleRepository.save(personale);
         return "redirect:/amministratore/gestisci";
 
+    }
+
+    private boolean verificaSessioneRuolo(HttpSession session) {
+        Personale personale = (Personale) session.getAttribute("utenteLoggato");
+        if (personale == null) {
+            return true;
+        }
+        return !personale.getRuolo()
+                         .getNome()
+                         .equals("Amministratore");
     }
 }

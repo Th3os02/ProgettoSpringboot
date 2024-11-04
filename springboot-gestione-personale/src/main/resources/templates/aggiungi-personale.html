@@ -27,8 +27,9 @@
             <td>
                 <fieldset>
                     <div th:each="ruolo : ${ruoli}">
-                        <label>
-                            <input type="radio" th:field="*{ruoloId}" th:value="${ruolo.id}"/>
+                        <label class="radio-ruolo">
+                            <input type="radio" th:field="*{ruoloId}" th:value="${ruolo.id}" required
+                            />
                             <span th:text="${ruolo.getNome()}"></span>
                         </label>
                     </div>
@@ -36,7 +37,7 @@
                 </fieldset>
             </td>
         </tr>
-        <tr>linguaInput
+        <tr id="div-lingue">
             <td>Lingua:</td>
             <td>
                 <div class="lingua-selector">
@@ -61,9 +62,9 @@
                 <fieldset>
                     <div th:each="contratto : ${contratti}">
                         <label>
-                            <input type="radio" name="contratto" th:field="*{contrattoId}"
+                            <input type="radio" name="contratto" th:field="*{contrattoId}" required
                                    th:value="${contratto.getId()}"/>
-                            <span th:text="${contratto.getTipocontratto()}" th:value="${contratto.getId()}"></span>
+                            <span th:text="${contratto.getTipocontratto()}"></span>
                         </label><br>
                     </div>
                 </fieldset>
@@ -129,6 +130,20 @@
             hiddenField.value = linguaId;
         }
     }
+
+    const divLingua = document.querySelector("#div-lingue");
+    const radiosRuolo = document.querySelectorAll(".radio-ruolo input[type='radio']");
+
+    radiosRuolo.forEach(radio => {
+        radio.addEventListener("click", () => {
+            const selectedRoleSpan = radio.parentNode.querySelector("span");
+            if (selectedRoleSpan.textContent === "Guida") {
+                divLingua.style.display = "";
+            } else {
+                divLingua.style.display = "none";
+            }
+        });
+    });
 
 </script>
 </body>
