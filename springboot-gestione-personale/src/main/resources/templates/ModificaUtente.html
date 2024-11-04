@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Modifica Password</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/stileListaPersonale.css}">
 </head>
 <body>
 <form th:action="@{'/ProfiloUtente/Modifica/' + ${personale.id}}" method="post" th:object="${cambiaPassword}">
