@@ -15,7 +15,8 @@ public class Ruolo {
     private Set<Personale> personale;
     public enum ERuolo {
         CURATORE("Curatore"),
-        GUIDA("Guida");
+        GUIDA("Guida"),
+        AMMINISTRATORE("Amministratore");
 
         private final String nome;
 

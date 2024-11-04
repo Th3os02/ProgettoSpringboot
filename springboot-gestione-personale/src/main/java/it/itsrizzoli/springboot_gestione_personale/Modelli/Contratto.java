@@ -21,28 +21,6 @@ public class Contratto {
     @OneToMany(mappedBy = "contratto")
     private Set<Personale> personale;
 
-    public enum EContratto {
-        FULL_TIME("Full Time", 1),
-        STAGE("Stage", 2),
-        PART_TIME("Part Time", 3);
-
-        private final String nome;
-        private final int id;
-
-        EContratto(String nome, int id) {
-            this.nome = nome;
-            this.id = id;
-        }
-
-        public String getNome() {
-            return nome;
-        }
-
-        public int getId() {
-            return id;
-        }
-    }
-
     public Integer getId() {
         return id;
     }

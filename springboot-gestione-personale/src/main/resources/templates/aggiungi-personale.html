@@ -63,7 +63,7 @@
                         <label>
                             <input type="radio" name="contratto" th:field="*{contrattoId}"
                                    th:value="${contratto.getId()}"/>
-                            <span th:text="${contratto.getNome()}" th:value="${contratto.getId()}"></span>
+                            <span th:text="${contratto.getTipocontratto()}" th:value="${contratto.getId()}"></span>
                         </label><br>
                     </div>
                 </fieldset>

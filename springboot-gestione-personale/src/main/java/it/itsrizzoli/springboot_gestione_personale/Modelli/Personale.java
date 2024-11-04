@@ -10,7 +10,9 @@ import java.util.Set;
 @Entity
 public class Personale {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "personale_sequence")
+    @SequenceGenerator(name = "personale_sequence", sequenceName = "personale_id_seq", initialValue = 5,
+            allocationSize = 1)
     private Integer id;
 
     private String nome;
