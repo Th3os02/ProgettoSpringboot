@@ -18,7 +18,6 @@ public class ControllerPersonale_2 {
 
     @GetMapping("/ProfiloUtente/{id}")
     public String getUtenteById(@PathVariable("id") int id, Model model) {
-        // Recupera l'utente dal database
         Personale personale = personaleRepository.findById(id).orElse(null);
         model.addAttribute("personale", personale);
         return "ProfiloUtente";
@@ -39,7 +38,7 @@ public class ControllerPersonale_2 {
                                      BindingResult bindingResult,
                                      Model model) {
         Personale personale = personaleRepository.findById(id).orElse(null);
-        model.addAttribute("personale", personale);  
+        model.addAttribute("personale", personale);
 
         if (bindingResult.hasErrors()) {
             return "ModificaUtente";
