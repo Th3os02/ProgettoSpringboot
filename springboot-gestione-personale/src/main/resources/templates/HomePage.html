@@ -11,7 +11,7 @@
 <nav th:switch="${ruolo}" class="navbar">
     <ul th:case="'amministratore'" class="menu">
         <a th:href="@{'/ProfiloUtente/' + ${userId}}" class="navLink"><li>Profilo Utente</li></a>
-        <a th:href="@{/ListaEventi}" class="navLink"><li>Lista Eventi</li></a>
+        <a th:href="@{'/eventi'}" class="navLink"><li>Lista Eventi</li></a>
         <a th:href="@{/ListaPersonale}" class="navLink"><li>Lista Personale</li></a>
         <a th:href="@{/ModificaUtente}" class="navLink"><li>Modifica Utente</li></a>
         <a th:href="@{/RegistraPersonale}" class="navLink"><li>Registra Personale</li></a>
@@ -19,7 +19,7 @@
 
     <ul th:case="'curatore'" class="menu">
         <a th:href="@{'/ProfiloUtente/' + ${userId}}" class="navLink"><li>Profilo Utente</li></a>
-        <a th:href="@{/ListaEventi}" class="navLink"><li>Lista Eventi</li></a>
+        <a th:href="@{'/eventi'}" class="navLink"><li>Lista Eventi</li></a>
         <a th:href="@{/ListaPersonale}" class="navLink"><li>Lista Personale</li></a>
     </ul>
 
