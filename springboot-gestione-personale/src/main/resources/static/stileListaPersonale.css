@@ -45,9 +45,8 @@ tbody tr:hover {
     background-color: #f1f1f1;
 }
 
-/* Stili generali per i pulsanti */
 button {
-    background-color: #00afb9; /* Colore predefinito */
+    background-color: #00afb9;
     color: #fff;
     border: none;
     padding: 8px 12px;
