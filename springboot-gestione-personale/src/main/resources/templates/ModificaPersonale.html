@@ -8,27 +8,37 @@
 <body>
 <h2>Modifica Dati Personale</h2>
 <form th:action="@{/amministratore/modifica/{id}(id=${personale.id})}" th:object="${personale}" method="post">
-    <label for="nome">Nome:</label>
-    <input type="text" id="nome" th:field="*{nome}" />
 
-    <label for="cognome">Cognome:</label>
-    <input type="text" id="cognome" th:field="*{cognome}" />
-
-    <label for="email">Email:</label>
-    <input type="text" id="email" th:field="*{email}" />
-
-    <label for="password">Password:</label>
-    <input type="text" id="password" th:field="*{password}" th:placeholder="${personale.getPassword()}" />
-
-    <label for="ruolo">Ruolo:</label>
-    <select id="ruolo" th:field="*{ruolo.id}">
+    <table>
+        <tr>
+            <td><label for="nome">Nome:</label></td>
+            <td><input type="text" id="nome" th:field="*{nome}" /></td>
+        </tr>
+        <tr>
+            <td><label for="cognome">Cognome:</label></td>
+            <td><input type="text" id="cognome" th:field="*{cognome}" /></td>
+        </tr>
+        <tr>
+            <td><label for="email">Email:</label></td>
+            <td><input type="text" id="email" th:field="*{email}" /></td>
+        </tr>
+        <tr>
+            <td><label for="password">Password:</label></td>
+            <td><input type="text" id="password" th:field="*{password}" th:placeholder="${personale.getPassword()}" /></td>
+        </tr>
+        <tr>
+            <td><label for="ruolo">Ruolo:</label></td>
+    <td><select id="ruolo" th:field="*{ruolo.id}">
         <option th:each="ruolo : ${ruoli}" th:value="${ruolo.id}" th:text="${ruolo.nome}"></option>
-    </select>
-
-    <label for="contratto">Contratto:</label>
-    <select id="contratto" th:field="*{contratto.id}">
+    </select></td>
+        </tr>
+        <tr>
+            <td><label for="contratto">Contratto:</label></td>
+    <td><select id="contratto" th:field="*{contratto.id}">
         <option th:each="contratto : ${contratti}" th:value="${contratto.id}" th:text="${contratto.tipocontratto}"></option>
-    </select>
+    </select></td>
+        </tr>
+    </table>
 
     <button type="submit">Salva Modifiche</button>
     <a th:href="@{/amministratore/gestisci}"><button type="button">Annulla</button></a>
