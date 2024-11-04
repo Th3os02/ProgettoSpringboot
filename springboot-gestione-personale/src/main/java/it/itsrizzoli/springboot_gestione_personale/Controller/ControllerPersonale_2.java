@@ -39,6 +39,7 @@ public class ControllerPersonale_2 {
                                      BindingResult bindingResult,
                                      Model model) {
         Personale personale = personaleRepository.findById(id).orElse(null);
+        model.addAttribute("personale", personale);  
 
         if (bindingResult.hasErrors()) {
             return "ModificaUtente";
