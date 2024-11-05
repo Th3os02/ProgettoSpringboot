@@ -4,16 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/StyleLogin.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}" />
 </head>
 
-<body>
-<div class="center-text">
-    <h1>Benvenuto al Museo</h1>
-    <h2>Gestione del Personale</h2>
+<body id="loginBackground">
+<div id="header">
+    <h1 id="title">Benvenuto al Museo</h1>
+    <h2 id="subtitle">Gestione del Personale</h2>
 </div>
+<!--
 <div class="contronoLog">
-<form action="#" th:action="@{/login}" th:object="${credenziali}" method="POST">
+-->
+<form action="#" th:action="@{/login}" th:object="${credenziali}" method="POST" id="form">
+    <!--
     <table>
         <tr>
             <td><label>Email:</label></td>
@@ -32,6 +35,21 @@
             <td><input type="submit" value="Login" id="submit"></td>
         </tr>
     </table>
+-->
+
+    <fieldset>
+        <legend>Login</legend>
+        <label for="email" class="required" accesskey="e">Email: </label>
+        <input th:field="*{email}" placeholder="Inserisci l'email" type="text" id="email" name="email" tabindex="1" title="email" size="30"><br>
+
+        <label for="password" class="required" accesskey="p">Password: </label>
+        <input th:field="*{password}" placeholder="Inserisci la password" type="password" id="password" name="password" tabindex="2" title="password" size="30"><br>
+        <div id="buttons">
+            <input type="reset" id="reset" class="button" tabindex="3">
+            <input type="submit" value="Login" class="button" tabindex="4">
+        </div>
+
+    </fieldset>
 </form>
 </div>
 </body>
