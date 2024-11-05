@@ -115,19 +115,21 @@
             } else {
                 const errLingua = document.querySelector("#error-lingua")
                 errLingua.style.display = ""
-                errLingua.textContent ="La lingua non è tra quelle possibili.";
+                errLingua.textContent = "La lingua non è tra quelle possibili.";
+                input.value = '';
                 setInterval(() => {
                     errLingua.style.display = "none"
 
                 }, 3_000)
             }
-        }else{
+        } else {
             const errLingua = document.querySelector("#error-lingua")
             errLingua.style.display = ""
-            errLingua.textContent ="La Lingua è già presente";
+            errLingua.textContent = "La Lingua è già presente";
             setInterval(() => {
                 errLingua.style.display = "none"
             }, 3_000)
+            input.value = '';
         }
         return false; // Previene l'invio del modulo
     }
@@ -142,7 +144,7 @@
         const opzioniArray = [];
         const opzioni = dataList.getElementsByTagName('option');
         for (let i = 0; i < opzioni.length; i++) {
-            opzioniArray.push(opzioni[i].value);
+            opzioniArray.push(opzioni[i].value.toLowerCase());
         }
         return opzioniArray.includes(lingua)
     }
