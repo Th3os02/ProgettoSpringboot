@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="it">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/aggiungi-personale.css}"/>
+    <title>Aggiungi Personale</title>
+</head>
 <body>
 
 <h2>Creazione account personale</h2>
@@ -8,25 +12,33 @@
     <table>
         <tr>
             <td>Nome:</td>
-            <td><input type="text" th:field="*{nome}" placeholder="Inserisci il tuo nome" required></td>
-            <td th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}">Nome non valido</td>
+            <td><input type="text" th:field="*{nome}" placeholder="Inserisci il tuo nome" required>
+                <p class="td-error" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}">Nome non valido</p>
+            </td>
 
         </tr>
         <tr>
             <td>Cognome:</td>
-            <td><input type="text" th:field="*{cognome}" placeholder="Inserisci il tuo cognome" required></td>
-            <td>
-            <td th:if="${#fields.hasErrors('cognome')}" th:errors="*{cognome}">Cognome non valido</td>
+            <td><input type="text" th:field="*{cognome}" placeholder="Inserisci il tuo cognome" required>
+                <p class="td-error" th:if="${#fields.hasErrors('cognome')}" th:errors="*{cognome}">Cognome non
+                    valido</p>
+
+            </td>
         </tr>
         <tr>
             <td>Email:</td>
-            <td><input type="email" th:field="*{email}" placeholder="Inserisci la tua email" required></td>
-            <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email non valido</td>
+            <td><input type="email" th:field="*{email}" placeholder="Inserisci la tua email" required>
+                <p class="td-error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email non valido</p>
+
+            </td>
         </tr>
         <tr>
             <td>Password:</td>
-            <td><input type="password" th:field="*{password}" placeholder="Inserisci la tua password" required></td>
-            <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password non valido</td>
+            <td><input type="password" th:field="*{password}" placeholder="Inserisci la tua password" required>
+                <p class="td-error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password non valido
+                </p>
+            </td>
+
         </tr>
         <tr>
             <td>Ruolo:</td>
@@ -39,7 +51,7 @@
                             <span th:text="${ruolo.getNome()}"></span>
                         </label>
                     </div>
-                    <div th:if="${#fields.hasErrors('ruoloId')}" th:errors="*{ruoloId}"></div>
+                    <div class="td-error" th:if="${#fields.hasErrors('ruoloId')}" th:errors="*{ruoloId}"></div>
                 </fieldset>
             </td>
         </tr>
@@ -58,8 +70,13 @@
                     </datalist>
 
                     <button type="button" th:onclick="addLanguage()">Add</button>
-                    <span id="lingueSelezionate">Lingua: </span>
+                    <span>
+                        Lingua:
+                         <span style="display: inline" id="lingueSelezionate"> </span>
+                    </span>
                 </div>
+                <p style="display:none;" id="error-lingua" class="td-error">Attenzione: Lingua inserita non è
+                    presente</p>
             </td>
         </tr>
         <tr>
@@ -81,15 +98,13 @@
     <input type="submit" value="Invia">
 </form>
 
-<p>Se clicchi sul pulsante "Invia", i dati del modulo verranno inviati a una pagina chiamata.</p>
-
 
 <script>
     const lingueSelezionate = [];
 
     function addLanguage() {
         const input = document.getElementById('lingua-input');
-        const lingua = input.value.trim();
+        const lingua = input.value.trim().toLowerCase();
         if (lingua && !lingueSelezionate.includes(lingua)) {
             if (isPresenteLinguaDataList(lingua)) {
                 const linguaId = getLanguageIdByName(lingua);
@@ -97,7 +112,22 @@
                 lingueSelezionate.push(lingua);
                 updateLingueSelezionate();
                 input.value = ''; // Pulisci il campo di input
+            } else {
+                const errLingua = document.querySelector("#error-lingua")
+                errLingua.style.display = ""
+                errLingua.textContent ="La lingua non è tra quelle possibili.";
+                setInterval(() => {
+                    errLingua.style.display = "none"
+
+                }, 3_000)
             }
+        }else{
+            const errLingua = document.querySelector("#error-lingua")
+            errLingua.style.display = ""
+            errLingua.textContent ="La Lingua è già presente";
+            setInterval(() => {
+                errLingua.style.display = "none"
+            }, 3_000)
         }
         return false; // Previene l'invio del modulo
     }

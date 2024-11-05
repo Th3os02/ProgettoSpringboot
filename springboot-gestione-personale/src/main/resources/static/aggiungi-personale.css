@@ -1,0 +1,114 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+form {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+fieldset {
+    border: none;
+}
+
+td {
+    padding: 10px;
+    vertical-align: top;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="hidden"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    width: 100%;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.radio-ruolo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.radio-ruolo input {
+    margin-right: 10px;
+}
+
+.lingua-selector input[type="text"] {
+    width: calc(100% - 60px);
+    display: inline-block;
+}
+
+.lingua-selector button {
+    height: 100%;
+    border: none;
+    background-color: #28a745;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 5px;
+}
+
+.lingua-selector button:hover {
+    background-color: #218838;
+}
+
+.suggestions {
+    display: none; /* Nascondi il datalist di default */
+}
+
+#lingueSelezionate {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #555;
+}
+
+.td-error {
+    color: red;
+    font-size: 0.9em;
+}
