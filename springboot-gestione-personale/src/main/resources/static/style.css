@@ -7,6 +7,96 @@ body {
     background: rgb(20, 20, 30);
 }
 
+#title {
+    color: rgba(80, 95, 95, 1);
+    text-align: center;
+    -webkit-text-stroke: 1px rgba(210, 180, 40, 1);
+    font-size: 60px;
+    font-family: "Cambria", "Cochin", "Georgia", "Times", 'Times New Roman', serif; ;
+}
+#subtitle {
+    color: rgba(80, 95, 95, 1);
+    text-align: center;
+    -webkit-text-stroke: 1px rgba(210, 180, 40, 1);
+    font-size: 30px;
+    font-family: "Cambria", "Cochin", "Georgia", "Times", 'Times New Roman', serif;
+    background: linear-gradient(to right, rgba(50, 50, 50, 0), rgba(200, 220, 200, 0.8), rgba(50, 50, 50, 0));
+}
+
+#form {
+    border-radius: 10px;
+    padding: 10px;
+    margin: auto;
+    background: linear-gradient(120deg, rgba(10, 10, 10, 0.35), 22%, rgba(10, 10, 10, 0.25), 33%, rgba(255, 255, 255, 0.4));
+    box-shadow: 0 0 10px rgba(100, 100, 100, 1);
+    width: fit-content;
+    display: grid;
+    place-items: center;
+    font-size: 18px;
+}
+
+input {
+    padding: 5px;
+}
+fieldset > input:first-of-type {
+    margin-bottom: 10px;
+}
+
+fieldset {
+    font-family: "Arial Rounded MT" , sans-serif;
+    font-size: 0.9em;
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    padding: 10px;
+    margin-top: -7px;
+}
+
+#buttons {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+legend {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+label {
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+}
+
+.button {
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: none;
+    border-radius: 2px;
+    padding: 10px;
+    width: 40%;
+}
+.button:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+#header {
+    border: 4px solid rgba(210, 180, 40, 1);
+    padding: 25px;
+    margin: 10px 10px 50px 10px;
+    background-image: url("https://www.360visio.com/wp-content/uploads/v2/20b-Milano360/20h-1-PaginaMusei/7-GallArteModerna-2/b-hayez/DSC03647-MI-GalleriaArteModerna-s12Hayez-rX8j-TT.jpg");
+    background-position: center;
+    /*background-size: cover;*/
+
+}
+
+#loginBackground {
+    background-color: rgba(80, 95, 95, 1);
+}
+
+
 h2 {
     font-family: Arial, sans-serif;
 }
