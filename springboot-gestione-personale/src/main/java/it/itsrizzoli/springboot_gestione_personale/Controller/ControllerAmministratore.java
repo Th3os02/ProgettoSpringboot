@@ -59,6 +59,8 @@ public class ControllerAmministratore {
             System.out.println(result.getAllErrors());
             model.addAttribute("errors", result.getAllErrors());
             setModelForm(personaleForm, model);
+            String ruolo = personaleLogin.getRuolo().getNome().toLowerCase();
+            model.addAttribute("ruolo", ruolo);
             return "AggiungiPersonale";
         }
 
