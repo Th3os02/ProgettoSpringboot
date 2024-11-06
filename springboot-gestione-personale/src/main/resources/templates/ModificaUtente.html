@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Modifica Password</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/stileListaPersonale.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
 </head>
-<body>
+<body id="loginBackground">
+<!--
 <form th:action="@{'/ProfiloUtente/Modifica/' + ${personale.id}}" method="post" th:object="${cambiaPassword}">
 
     <table>
@@ -24,6 +25,24 @@
         <a th:href="@{'/ProfiloUtente/'+ ${personale.id}}" style="text-decoration: none">Annulla</a>
     </button>
     <button type="submit">Salva</button>
+</form>
+-->
+
+<form th:action="@{'/ProfiloUtente/Modifica/' + ${personale.id}}" method="post" th:object="${cambiaPassword}" id="form">
+
+<fieldset>
+    <legend>Modifica Password</legend>
+    <label for="nuovaPassword" class="required" accesskey="n">Nuova Password: </label>
+    <input type="password" id="nuovaPassword" th:field="*{nuovaPassword}"
+           placeholder="Inserisci una nuova password" name="nuovaPassword" tabindex="1" title="nuovaPassword" size="30" required><br>
+
+    <label for="confermaPassword" class="required" accesskey="p">Conferma Nuova Password: </label>
+    <input id="confermaPassword" th:field="*{confermaPassword}" placeholder="Conferma nuova password" type="password" name="confermaPassword" tabindex="2" title="confermaPassword" size="30" required><br>
+    <div id="buttons">
+        <button type="button" class="button" tabindex="3"><a th:href="@{/ProfiloUtente/{id}(id=${personale.id})}">Annulla</a></button>        <input type="submit" value="Modifica" class="button" tabindex="4">
+    </div>
+
+</fieldset>
 </form>
 </body>
 </html>
