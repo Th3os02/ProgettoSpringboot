@@ -44,4 +44,10 @@ public class Lingue {
     public void setNomeLingua(String nomeLingua) {
         this.nomeLingua = nomeLingua;
     }
+
+    @Override
+    public String toString() {
+        return  nomeLingua;
+    }
 }
+

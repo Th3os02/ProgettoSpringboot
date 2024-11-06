@@ -32,12 +32,16 @@ VALUES (0, 'Rohit', 'Admin', 'admin.admin@museo.com', 'password', 0, 1),
        (3, 'Luca', 'Verdi', 'luca.verdi@museo.com', 'password3', 1, 2),
        (4, 'Sara', 'Neri', 'sara.neri@museo.com', 'password4', 2, 3);
 -- Inserimento di eventi nella tabella evento con il campo id specificato
+
 INSERT INTO evento (id, titolo_evento, tipo, descrizione_evento, data_inizio, data_fine, limite_persone, stanza)
 VALUES
     (1, 'Mostra di Van Gohg', 'Mostra', 'Mostra di diversi dipinti e opere di Van Gohg', '2024-05-20', '2024-05-21', 150, 'Salone Van Gohg'),
     (2, 'Tour a tema Roma', 'Tour Guidato', 'Guarda tutta la roba rubata a Roma', '2024-06-10', '2024-06-10', 50, 'Sezione Roma'),
     (3, 'Presentazione sulla vita di Hideo Kojima', 'Evento Sociale', 'La sua vita ha molto piu significato della tua', '2024-07-01', '2024-07-01', 20, 'Auditorium'),
     (4, 'Tour a tema Egitto', 'Tour Guidato', 'Guarda tutta la rubata all Egitto', '2024-08-15', '2024-08-16', 30, 'Sezione Egitto');
+
+INSERT INTO personale_lingua (personale_id, lingua_id) VALUES
+                                                           (4, 2), (4, 1), (4, 3);
 
 -- Collegamento tra eventi e personale nella tabella di join personale_evento con id evento specifico
 -- Evento ID 1 associato a personale con ID 1, 2, 3
