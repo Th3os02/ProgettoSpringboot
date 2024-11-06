@@ -26,6 +26,11 @@ public class ControllerEventi {
         model.addAttribute("personale", personale);
         ArrayList<Evento> listaEventi = eventoRepo.findByIdPers(personale.getId());
         model.addAttribute("eventi", listaEventi);
+
+
+        // nav bar
+        model.addAttribute("ruolo", personale.getRuolo().getNome().toLowerCase());
+        model.addAttribute("userId",personale.getId());
         return "ListaEventi";
     }
 }

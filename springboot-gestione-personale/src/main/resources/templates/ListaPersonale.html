@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <title>Gestione del personale</title>
     <link rel="stylesheet" type="text/css" th:href="@{/stileListaPersonale.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}"/>
 </head>
 <body>
+<header th:replace="fragments/header :: header"></header>
 <h2>Gestione del Personale</h2>
 <form th:action="@{/amministratore/cerca}" method="get">
     <label for="cognome">Cerca per cognome:</label>

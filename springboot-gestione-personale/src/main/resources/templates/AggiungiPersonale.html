@@ -44,7 +44,7 @@
         <tr>
             <td>Ruolo:</td>
             <td>
-                <fieldset>
+                <fieldset class="my-fieldset">
                     <div th:each="ruolo : ${ruoli}">
                         <label class="radio-ruolo">
                             <input type="radio" th:field="*{ruoloId}" th:value="${ruolo.id}" required
@@ -83,7 +83,7 @@
         <tr>
             <td>Contratto:</td>
             <td>
-                <fieldset>
+                <fieldset class="my-fieldset">
                     <div th:each="contratto : ${contratti}">
                         <label>
                             <input type="radio" name="contratto" th:field="*{contrattoId}" required
@@ -120,18 +120,17 @@
                 errLingua.style.display = ""
                 errLingua.textContent = "La lingua non è tra quelle possibili.";
                 input.value = '';
-                setInterval(() => {
+                setTimeout(() => {
                     errLingua.style.display = "none"
-
-                }, 5_000)
+                }, 10_000)
             }
         } else {
             const errLingua = document.querySelector("#error-lingua")
             errLingua.style.display = ""
             errLingua.textContent = "La Lingua è già presente";
-            setInterval(() => {
+            setTimeout(() => {
                 errLingua.style.display = "none"
-            }, 5_000)
+            }, 10_000)
             input.value = '';
         }
         return false; // Previene l'invio del modulo

@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <title>Lista Eventi</title>
     <link rel="stylesheet" type="text/css" th:href="@{/stileListaPersonale.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}"/>
 </head>
 <body>
+<header th:replace="fragments/header :: header"></header>
 <h2>Lista Eventi</h2>
 <table th:if="${eventi.size()} != 0" >
     <thead>

@@ -25,6 +25,11 @@ public class ControllerPersonale_2 {
         }
         Personale personale = personaleRepository.findById(id).orElse(null);
         model.addAttribute("personale", personale);
+
+
+        // nav bar
+        model.addAttribute("ruolo", personalelog.getRuolo().getNome().toLowerCase());
+        model.addAttribute("userId",personalelog.getId());
         return "ProfiloUtente";
     }
 
@@ -38,6 +43,11 @@ public class ControllerPersonale_2 {
         model.addAttribute("cambiaPassword", cambiaPassword);
         Personale personale = personaleRepository.findById(id).orElse(null);
         model.addAttribute("personale", personale);
+
+        // nav bar
+        model.addAttribute("ruolo", personalelog.getRuolo().getNome().toLowerCase());
+        model.addAttribute("userId",personalelog.getId());
+
         return "ModificaUtente";
     }
 
@@ -45,16 +55,35 @@ public class ControllerPersonale_2 {
     public String salvaNuovaPassword(@PathVariable("id") int id,
                                      @Valid @ModelAttribute("cambiaPassword") CambiaPassword cambiaPassword,
                                      BindingResult bindingResult,
-                                     Model model) {
+                                     Model model,
+                                     HttpSession session) {
         Personale personale = personaleRepository.findById(id).orElse(null);
         model.addAttribute("personale", personale);
 
         if (bindingResult.hasErrors()) {
+
+            // nav bar
+            Personale personalelog = (Personale) session.getAttribute("utenteLoggato");
+            if (personalelog != null) {
+                model.addAttribute("userId",personalelog.getId());
+                model.addAttribute("ruolo", personalelog.getRuolo().getNome().toLowerCase());
+            }
+
             return "ModificaUtente";
         }
 
         if (!cambiaPassword.getNuovaPassword().equals(cambiaPassword.getConfermaPassword())) {
+
             model.addAttribute("passwordsDiverse", "Le password non coincidono.");
+
+            // nav bar
+            Personale personalelog = (Personale) session.getAttribute("utenteLoggato");
+            if (personalelog != null) {
+                model.addAttribute("userId",personalelog.getId());
+                model.addAttribute("ruolo", personalelog.getRuolo().getNome().toLowerCase());
+            }
+
+
             return "ModificaUtente";
         }
 

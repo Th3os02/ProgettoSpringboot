@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <title>Modifica Dati Personale</title>
     <link rel="stylesheet" type="text/css" th:href="@{/stileListaPersonale.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}"/>
 </head>
 <body>
+<header th:replace="fragments/header :: header"></header>
 <h2>Modifica Dati Personale</h2>
 <form th:action="@{/amministratore/modifica/{id}(id=${personale.id})}" th:object="${personale}" method="post">
 

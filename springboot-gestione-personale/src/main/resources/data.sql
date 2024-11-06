@@ -1,5 +1,6 @@
 -- Inserimento di un nuovo orario di lavoro
-/*INSERT INTO orario_lavoro (id, orario_inizio, orario_fine)
+/*
+INSERT INTO orario_lavoro (id, orario_inizio, orario_fine)
 VALUES (1, '08:00:00', '17:00:00'),
        (2, '09:00:00', '18:00:00'),
        (3, '08:00:00', '16:00:00');
@@ -58,4 +59,4 @@ INSERT INTO personale_evento (evento_id, personale_id) VALUES
 
 -- Evento ID 4 associato a tutto il personale (ID 1, 2, 3, 4)
 INSERT INTO personale_evento (evento_id, personale_id) VALUES
-                                                           (4, 1), (4, 2), (4, 3), (4, 4);*/
+                                                           (4, 1), (4, 2), (4, 3), (4, 4); */

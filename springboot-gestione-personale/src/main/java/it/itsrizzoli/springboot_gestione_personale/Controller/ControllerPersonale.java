@@ -70,6 +70,11 @@ public class ControllerPersonale {
         }
         List<Personale> listaPersonale = (List<Personale>) userRepository.findAll(); // Ottiene la lista dal database
         model.addAttribute("personale", listaPersonale); // Passa i dati alla vista
+
+        // nav bar
+        model.addAttribute("ruolo", personale.getRuolo().getNome().toLowerCase());
+        model.addAttribute("userId",personale.getId());
+
         return "ListaPersonale";
     }
 
@@ -88,13 +93,23 @@ public class ControllerPersonale {
         } else {
             System.out.println("ID non trovato: " + id);
         }
+
+
         return "redirect:/amministratore/gestisci";
     }
 
     @GetMapping("/amministratore/cerca")
-    public String cercaPersonale(@RequestParam("cognome") String cognome, Model model) {
+    public String cercaPersonale(@RequestParam("cognome") String cognome, Model model,HttpSession session) {
         List<Personale> risultatiRicerca = userRepository.findByCognome(cognome);
         model.addAttribute("personale", risultatiRicerca);
+
+        // nav bar
+        Personale personale = (Personale) session.getAttribute("utenteLoggato");
+        if (personale == null) {
+            return "redirect:/login";
+        }
+        model.addAttribute("ruolo", personale.getRuolo().getNome().toLowerCase());
+        model.addAttribute("userId",personale.getId());
         return "ListaPersonale";
     }
 
@@ -108,6 +123,12 @@ public class ControllerPersonale {
         model.addAttribute("ruoli", ruoloRepository.findAll());
         model.addAttribute("contratti", contrattoRepository.findAll());
         model.addAttribute("personale", personale);
+
+
+        // nav bar
+        model.addAttribute("ruolo", personale.getRuolo().getNome().toLowerCase());
+        model.addAttribute("userId",personale.getId());
+
         return "ModificaPersonale";
     }
 

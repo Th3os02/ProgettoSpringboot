@@ -39,9 +39,11 @@ public class ControllerAmministratore {
         if (verificaSessioneRuolo(session, personale)) {
             return "redirect:/login";
         }
-        String ruolo = personale.getRuolo().getNome().toLowerCase();
-        model.addAttribute("ruolo", ruolo);
-        setModelForm(personaleForm, model);
+        // nav bar
+        model.addAttribute("ruolo", personale.getRuolo().getNome().toLowerCase());
+        model.addAttribute("userId",personale.getId());
+
+    setModelForm(personaleForm, model);
         return "AggiungiPersonale";
     }
 
@@ -59,8 +61,11 @@ public class ControllerAmministratore {
             System.out.println(result.getAllErrors());
             model.addAttribute("errors", result.getAllErrors());
             setModelForm(personaleForm, model);
-            String ruolo = personaleLogin.getRuolo().getNome().toLowerCase();
-            model.addAttribute("ruolo", ruolo);
+
+
+            // nav bar
+            model.addAttribute("ruolo", personaleLogin.getRuolo().getNome().toLowerCase());
+            model.addAttribute("userId",personaleLogin.getId());
             return "AggiungiPersonale";
         }
 

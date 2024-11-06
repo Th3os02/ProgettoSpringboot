@@ -6,6 +6,8 @@
     <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
 </head>
 <body>
+<header th:replace="fragments/header :: header"></header>
+<h2>Modfica Utente</h2>
 <!--
 <form th:action="@{'/ProfiloUtente/Modifica/' + ${personale.id}}" method="post" th:object="${cambiaPassword}">
 

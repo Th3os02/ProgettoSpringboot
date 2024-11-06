@@ -124,6 +124,7 @@ input[type="password"] {
   margin-top: 8px;
 }
 
-fieldset {
+.my-fieldset {
     border: none;
+    color: #000
 }
