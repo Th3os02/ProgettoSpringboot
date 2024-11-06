@@ -30,7 +30,10 @@
         <td>Contratto:</td>
         <td th:text="${personale.contratto}"></td>
     </tr>
-
+    <tr th:if="${personale.ruolo.nome == 'Guida'}">
+        <td>Lingue:</td>
+        <td th:text="${#strings.arrayJoin(personale.lingue, ', ')}"></td>
+    </tr>
 </table>
 <button>
     <a th:href="@{/HomePage}" style="text-decoration: none">Indietro</a>
