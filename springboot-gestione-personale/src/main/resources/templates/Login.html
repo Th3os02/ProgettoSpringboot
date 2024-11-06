@@ -41,16 +41,15 @@
         <legend>Login</legend>
         <label for="email" class="required" accesskey="e">Email: </label>
         <input th:field="*{email}" placeholder="Inserisci l'email" type="text" id="email" name="email" tabindex="1" title="email" size="30" required><br>
-
         <label for="password" class="required" accesskey="p">Password: </label>
         <input th:field="*{password}" placeholder="Inserisci la password" type="password" id="password" name="password" tabindex="2" title="password" size="30" required><br>
         <div id="buttons">
             <input type="reset" id="reset" class="button" tabindex="3">
             <input type="submit" value="Login" class="button" tabindex="4">
         </div>
-
+        <label th:if="${!valido}" >Credenziali non valide</label>
     </fieldset>
 </form>
-</div>
+
 </body>
 </html>

@@ -34,34 +34,38 @@ public class ControllerPersonale {
     private RuoloRepository ruoloRepository;
 
     @GetMapping("/")
-    public String index(Credenziali credenziali) {
+    public String index(Credenziali credenziali, Model model) {
+        model.addAttribute("valido", true);
         return "Login";
     }
 
     @GetMapping("/login")
-    public String login(Credenziali credenziali) {
+    public String login(Credenziali credenziali,Model model) {
+        model.addAttribute("valido", true);
         return "Login";
     }
 
-    @RequestMapping(value="/login", method= RequestMethod.POST)
-    public String postLogin(@Valid Credenziali credenziali, HttpSession session) {
-       Personale user = userRepository.login(credenziali.getEmail(), credenziali.getPassword());
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public String postLogin(@Valid Credenziali credenziali, HttpSession session, Model model) {
+        Personale user = userRepository.login(credenziali.getEmail(), credenziali.getPassword());
 
-        if(user == null)
-            return "redirect:/login";
-        else {
+        if (user == null) {
+            model.addAttribute("valido", false);
+            return "Login";
+        } else {
             session.setAttribute("utenteLoggato", user);
 
             return "redirect:/HomePage";
         }
     }
+
     @GetMapping("amministratore/gestisci")
-    public String personale(Model model,HttpSession session) {
+    public String personale(Model model, HttpSession session) {
         Personale personale = (Personale) session.getAttribute("utenteLoggato");
         if (personale == null) {
             return "redirect:/login";
         }
-        if (!personale.getRuolo().getNome().equals("Amministratore")){
+        if (!personale.getRuolo().getNome().equals("Amministratore")) {
             return "redirect:/login";
         }
         List<Personale> listaPersonale = (List<Personale>) userRepository.findAll(); // Ottiene la lista dal database
@@ -93,8 +97,6 @@ public class ControllerPersonale {
         model.addAttribute("personale", risultatiRicerca);
         return "ListaPersonale";
     }
-
-
 
 
     @GetMapping("amministratore/modifica/{id}")
