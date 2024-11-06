@@ -69,7 +69,7 @@
                                 th:data-id="${lingua.id}"></option>
                     </datalist>
 
-                    <button type="button" th:onclick="addLanguage()">Add</button>
+                    <button class="button-color" type="button" th:onclick="addLanguage()">Add</button>
                     <span>
                         Lingua:
                          <span style="display: inline" id="lingueSelezionate"> </span>
@@ -95,7 +95,7 @@
         </tr>
     </table>
     <br>
-    <input type="submit" value="Invia">
+    <input class="button-color" type="submit" value="Invia">
 </form>
 
 
@@ -120,7 +120,7 @@
                 setInterval(() => {
                     errLingua.style.display = "none"
 
-                }, 3_000)
+                }, 5_000)
             }
         } else {
             const errLingua = document.querySelector("#error-lingua")
@@ -128,7 +128,7 @@
             errLingua.textContent = "La Lingua è già presente";
             setInterval(() => {
                 errLingua.style.display = "none"
-            }, 3_000)
+            }, 5_000)
             input.value = '';
         }
         return false; // Previene l'invio del modulo
