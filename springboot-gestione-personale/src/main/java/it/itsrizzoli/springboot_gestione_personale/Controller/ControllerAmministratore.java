@@ -42,7 +42,7 @@ public class ControllerAmministratore {
         String ruolo = personale.getRuolo().getNome().toLowerCase();
         model.addAttribute("ruolo", ruolo);
         setModelForm(personaleForm, model);
-        return "aggiungi-personale";
+        return "AggiungiPersonale";
     }
 
     @PostMapping("/aggiungi-persona")
@@ -59,7 +59,7 @@ public class ControllerAmministratore {
             System.out.println(result.getAllErrors());
             model.addAttribute("errors", result.getAllErrors());
             setModelForm(personaleForm, model);
-            return "aggiungi-personale";
+            return "AggiungiPersonale";
         }
 
         System.out.println(personaleForm);
