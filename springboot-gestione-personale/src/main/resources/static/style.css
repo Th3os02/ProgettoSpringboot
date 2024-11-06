@@ -11,7 +11,7 @@ a {
 }
 
 body {
-    background: rgb(20, 20, 30);
+    background-color: rgba(80, 95, 95, 1);
 }
 
 #title {
@@ -101,11 +101,6 @@ label {
 
 }
 
-#loginBackground {
-    background-color: rgba(80, 95, 95, 1);
-}
-
-
 h2 {
     font-family: Arial, sans-serif;
 }
@@ -149,7 +144,7 @@ p {
 }
 
 .navbar {
-    background: linear-gradient(to bottom, rgba(10, 10, 50, 0.4), rgba(0, 0, 0, 0));
+    background: linear-gradient(to bottom, rgba(10, 50, 10, 0.4), rgba(0, 0, 0, 0));
     margin: 5px;
 }
 
@@ -164,20 +159,22 @@ p {
 }
 
 .navLink:hover {
-    border: 2px solid rgba(255, 255, 255, 0.5);
+    border: 2px solid rgba(210, 180, 40, 1);
     color: white;
     letter-spacing: 1px;
     cursor: pointer;
-    box-shadow: 0 10px 70px rgba(100, 100, 255, 0.1);
+    box-shadow: 0 10px 70px rgba(100, 255, 100, 0.2);
+    background-color: rgba(55, 70, 55, 0.9);
+
 }
 
 .navLink {
     position: relative;
-    background-color: #333333;
+    background-color: rgba(50, 50, 50, 0.8);
     flex: 1 0 200px;
     list-style-type: none;
     text-align: center;
-    border: 2px solid rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(210, 180, 40, 0.7);
     padding: 10px;
     text-decoration: none;
     text-wrap: nowrap;
@@ -196,7 +193,7 @@ p {
     bottom: -7px;
     height: 1px;
     border-radius: 100%;
-    background: linear-gradient(to right, rgba(50, 50, 50, 0.4), rgba(200, 200, 200, 0.8), rgba(50, 50, 50, 0.4));
+    background: linear-gradient(to right, rgba(210, 180, 40, 0.3), rgba(210, 180, 40, 1), rgba(210, 180, 40, 0.3));
     transform: scaleX(0);
     transition: transform 0.2s ease-out;
 }
