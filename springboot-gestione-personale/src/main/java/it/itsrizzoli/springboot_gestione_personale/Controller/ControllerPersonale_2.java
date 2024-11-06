@@ -3,6 +3,7 @@ package it.itsrizzoli.springboot_gestione_personale.Controller;
 import it.itsrizzoli.springboot_gestione_personale.Modelli.CambiaPassword;
 import it.itsrizzoli.springboot_gestione_personale.Modelli.Personale;
 import it.itsrizzoli.springboot_gestione_personale.DAO.PersonaleRepository; // Assicurati di importare il repository
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,14 +18,22 @@ public class ControllerPersonale_2 {
     private PersonaleRepository personaleRepository;
 
     @GetMapping("/ProfiloUtente/{id}")
-    public String getUtenteById(@PathVariable("id") int id, Model model) {
+    public String getUtenteById(@PathVariable("id") int id, Model model, HttpSession session) {
+        Personale personalelog = (Personale) session.getAttribute("utenteLoggato");
+        if (personalelog == null) {
+            return "redirect:/login";
+        }
         Personale personale = personaleRepository.findById(id).orElse(null);
         model.addAttribute("personale", personale);
         return "ProfiloUtente";
     }
 
     @GetMapping("/ProfiloUtente/Modifica/{id}")
-    public String mostraPaginaModifica(@PathVariable("id") int id, Model model) {
+    public String mostraPaginaModifica(@PathVariable("id") int id, Model model,HttpSession session) {
+        Personale personalelog = (Personale) session.getAttribute("utenteLoggato");
+        if (personalelog == null) {
+            return "redirect:/login";
+        }
         CambiaPassword cambiaPassword = new CambiaPassword();
         model.addAttribute("cambiaPassword", cambiaPassword);
         Personale personale = personaleRepository.findById(id).orElse(null);
