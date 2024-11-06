@@ -18,7 +18,7 @@ public class Contratto {
     // Specifica il nome della colonna e che non può essere null
     private OrarioLavoro orarioLavoro;
 
-    @OneToMany(mappedBy = "contratto")
+    @OneToMany(mappedBy = "contratto",cascade = CascadeType.ALL)
     private Set<Personale> personale;
 
     public Integer getId() {

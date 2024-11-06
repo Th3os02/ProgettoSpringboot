@@ -2,10 +2,11 @@
 <html lang="it">
 <head>
     <link rel="stylesheet" type="text/css" th:href="@{/aggiungi-personale.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}"/>
     <title>Aggiungi Personale</title>
 </head>
 <body>
-
+<header th:replace="fragments/header :: header"></header>
 <h2>Creazione account personale</h2>
 
 <form action="#" th:action="@{/aggiungi-persona}" th:object="${personaleForm}" method="post">
@@ -68,13 +69,13 @@
                                 th:value="${lingua.nomeLingua}"
                                 th:data-id="${lingua.id}"></option>
                     </datalist>
+                </div>
 
-                    <button class="button-color" type="button" th:onclick="addLanguage()">Add</button>
-                    <span>
+                <button class="button-color" type="button" th:onclick="addLanguage()">Add</button>
+                <span>
                         Lingua:
                          <span style="display: inline" id="lingueSelezionate"> </span>
                     </span>
-                </div>
                 <p style="display:none;" id="error-lingua" class="td-error">Attenzione: Lingua inserita non è
                     presente</p>
             </td>
@@ -96,6 +97,8 @@
     </table>
     <br>
     <input class="button-color" type="submit" value="Invia">
+    <a th:href="@{'/ListaPersonale'}" class="nav-link">Indietro</a>
+    </a>
 </form>
 
 

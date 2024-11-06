@@ -35,10 +35,12 @@ public class ControllerAmministratore {
     // localhost:8080/aggiungi-persona
     @GetMapping("/nuovo-personale")
     public String aggiungiPersona(PersonaleForm personaleForm, Model model, HttpSession session) {
-        if (verificaSessioneRuolo(session)) {
+        Personale personale = (Personale) session.getAttribute("utenteLoggato");
+        if (verificaSessioneRuolo(session, personale)) {
             return "redirect:/login";
         }
-
+        String ruolo = personale.getRuolo().getNome().toLowerCase();
+        model.addAttribute("ruolo", ruolo);
         setModelForm(personaleForm, model);
         return "aggiungi-personale";
     }
@@ -48,7 +50,8 @@ public class ControllerAmministratore {
                                   BindingResult result,
                                   Model model,
                                   HttpSession session) {
-        if (verificaSessioneRuolo(session)) {
+        Personale personaleLogin = (Personale) session.getAttribute("utenteLoggato");
+        if (verificaSessioneRuolo(session, personaleLogin)) {
             return "redirect:/login";
         }
 
@@ -107,8 +110,7 @@ public class ControllerAmministratore {
         model.addAttribute("contratti", contrattoRepository.findAll());
     }
 
-    private boolean verificaSessioneRuolo(HttpSession session) {
-        Personale personale = (Personale) session.getAttribute("utenteLoggato");
+    private boolean verificaSessioneRuolo(HttpSession session, Personale personale) {
         if (personale == null) {
             return true;
         }

@@ -1,0 +1,46 @@
+<!-- src/main/resources/templates/fragments/header.html -->
+<header th:fragment="header">
+    <nav th:switch="${ruolo}" class="navbar">
+        <ul th:case="'amministratore'" class="menu">
+            <a th:href="@{/HomePage}" class="navLink">
+                <li>Home</li>
+            </a>
+            <a th:href="@{'/ProfiloUtente/' + ${userId}}" class="navLink">
+                <li>Profilo Utente</li>
+            </a>
+            <!--<a th:href="@{'/eventi'}" class="navLink"><li>Lista Eventi</li></a>-->
+            <a th:href="@{/ListaPersonale}" class="navLink">
+                <li>Lista Personale</li>
+            </a>
+            <!--<a th:href="@{/ModificaUtente}" class="navLink"><li>Modifica Utente</li></a>-->
+            <a th:href="@{'/nuovo-personale'}" class="navLink">
+                <li>Registra Personale</li>
+            </a>
+        </ul>
+
+        <ul th:case="'curatore'" class="menu">
+            <a th:href="@{/HomePage}" class="navLink">
+                <li>Home</li>
+            </a>
+            <a th:href="@{'/ProfiloUtente/' + ${userId}}" class="navLink">
+                <li>Profilo Utente</li>
+            </a>
+            <a th:href="@{'/eventi'}" class="navLink">
+                <li>Lista Eventi</li>
+            </a>
+            <!--<a th:href="@{/ListaPersonale}" class="navLink"><li>Lista Personale</li></a>-->
+        </ul>
+
+        <ul th:case="'guida'" class="menu">
+            <a th:href="@{/HomePage}" class="navLink">
+                <li>Home</li>
+            </a>
+            <a th:href="@{'/ProfiloUtente/' + ${userId}}" class="navLink">
+                <li>Profilo Utente</li>
+            </a>
+            <a th:href="@{'/eventi'}" class="navLink">
+                <li>Lista Eventi</li>
+            </a>
+        </ul>
+    </nav>
+</header>
