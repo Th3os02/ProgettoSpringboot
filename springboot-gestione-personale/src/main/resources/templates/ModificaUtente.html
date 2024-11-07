@@ -38,9 +38,11 @@
     <label for="nuovaPassword" class="required" accesskey="n">Nuova Password: </label>
     <input type="password" id="nuovaPassword" th:field="*{nuovaPassword}"
            placeholder="Inserisci una nuova password" name="nuovaPassword" tabindex="1" title="nuovaPassword" size="30" required><br>
+    <span th:if="${#fields.hasErrors('nuovaPassword')}" th:errors="*{nuovaPassword}" style="color: red; font-size: 0.9em;"></span>
 
     <label for="confermaPassword" class="required" accesskey="p">Conferma Nuova Password: </label>
     <input id="confermaPassword" th:field="*{confermaPassword}" placeholder="Conferma nuova password" type="password" name="confermaPassword" tabindex="2" title="confermaPassword" size="30" required><br>
+    <span th:if="${passwordsDiverse}" th:text="${passwordsDiverse}" style="color: red; font-size: 0.9em;"></span>
     <div id="buttons">
         <button type="button" class="button" tabindex="3"><a th:href="@{/ProfiloUtente/{id}(id=${personale.id})}">Annulla</a></button>        <input type="submit" value="Modifica" class="button" tabindex="4">
     </div>

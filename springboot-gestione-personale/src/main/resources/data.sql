@@ -60,5 +60,4 @@ INSERT INTO personale_evento (evento_id, personale_id) VALUES
 -- Evento ID 4 associato a tutto il personale (ID 1, 2, 3, 4)
 INSERT INTO personale_evento (evento_id, personale_id) VALUES
                                                            (4, 1), (4, 2), (4, 3), (4, 4);
-
- */
+*/
