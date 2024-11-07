@@ -105,7 +105,22 @@
 
 <script>
     const lingueSelezionate = [];
+    function updateLingueListId(id) {
+        console.log({id})
+        const input = document.getElementById('linguaId');
+        let currentIds = input.value ? input.value.split(',') : [];
 
+        // Controlla se l'ID è già presente
+        const index = currentIds.indexOf(id);
+        if (index === -1) {
+            // Aggiungi l'ID se non è già presente
+            currentIds.push(id);
+        }
+
+        // Aggiorna il valore dell'input nascosto
+        input.value = currentIds.join(',');
+        console.log("Lingue ID aggiornato a: " + input.value);
+    }
     function addLanguage() {
         const input = document.getElementById('lingua-input');
         const lingua = input.value.trim().toLowerCase();
@@ -113,6 +128,8 @@
             if (isPresenteLinguaDataList(lingua)) {
                 const linguaId = getLanguageIdByName(lingua);
                 addLanguageToHiddenField(linguaId);
+                console.log({linguaId})
+                updateLingueListId(linguaId);
                 lingueSelezionate.push(lingua);
                 updateLingueSelezionate();
                 input.value = ''; // Pulisci il campo di input
@@ -149,13 +166,15 @@
         for (let i = 0; i < opzioni.length; i++) {
             opzioniArray.push(opzioni[i].value.toLowerCase());
         }
+        console.log({opzioniArray})
         return opzioniArray.includes(lingua)
     }
 
     function getLanguageIdByName(linguaNome) {
+        console.log({linguaNome})
         const options = document.querySelectorAll("#list-lingue option");
         for (let i = 0; i < options.length; i++) {
-            if (options[i].value === linguaNome) {
+            if (options[i].value.toLowerCase() === linguaNome.toLowerCase()) {
                 return options[i].getAttribute("data-id");
             }
         }
