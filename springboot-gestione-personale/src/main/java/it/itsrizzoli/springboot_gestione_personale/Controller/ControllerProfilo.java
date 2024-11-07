@@ -12,7 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-public class ControllerPersonale_2 {
+public class ControllerProfilo {
 
     @Autowired
     private PersonaleRepository personaleRepository;
