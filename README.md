@@ -27,7 +27,7 @@ Ecco i dati di login per ciascun ruolo (a meno che i dati non siano stati modifi
   - Password: password1
 
 - **Guida**
-  - Email: giulia.bianchi@.com
+  - Email: giulia.bianchi@museo.com
   - Password: password2
 
 ## Membri
