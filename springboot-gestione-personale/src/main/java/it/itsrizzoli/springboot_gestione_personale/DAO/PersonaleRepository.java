@@ -12,8 +12,6 @@ public interface PersonaleRepository extends CrudRepository<Personale, Integer> 
     @Query("select p from Personale p where p.email = :email and p.password = :password")
     Personale login(String email, String password);
 
-    List<Personale> findByEmail(String email);
-
     Optional<Personale> findById(Integer id);
 
     List<Personale> findByCognome(String cognome);

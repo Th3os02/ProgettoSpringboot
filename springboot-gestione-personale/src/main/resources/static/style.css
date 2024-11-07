@@ -98,7 +98,32 @@ label {
     background-image: url("https://www.360visio.com/wp-content/uploads/v2/20b-Milano360/20h-1-PaginaMusei/7-GallArteModerna-2/b-hayez/DSC03647-MI-GalleriaArteModerna-s12Hayez-rX8j-TT.jpg");
     background-position: center;
     /*background-size: cover;*/
+}
 
+#footerElem {
+    border-top: solid 2px black;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background-color: rgba(10, 10, 10, 0.3);
+    color: rgb(200, 200, 200);
+}
+#footerElem > div {
+    padding: 10px;
+}
+
+#footerElem > div {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+}
+
+#footerElem > div > ul > li {
+    list-style: none;
+    padding: 5px;
 }
 
 h2 {
@@ -128,9 +153,7 @@ p {
 }
 
 #back {
-    position: absolute;
-    right: 0%;
-    bottom: 0%;
+    float: right;
     margin: 5px;
     background-color: #830000;
     text-align: center;
