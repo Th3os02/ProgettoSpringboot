@@ -1,3 +1,8 @@
+-- Quando il ddl è create o create-drop: usa i dati di questa pagina per riempire le tabelle
+-- Quando il ddl è update: commenta questi dati, perche sono già nel database
+
+
+
 -- Inserimento di un nuovo orario di lavoro
 /*
 INSERT INTO orario_lavoro (id, orario_inizio, orario_fine)
@@ -36,7 +41,7 @@ VALUES (0, 'Rohit', 'Admin', 'admin.admin@museo.com', 'password', 0, 1),
 
 INSERT INTO evento (id, titolo_evento, tipo, descrizione_evento, data_inizio, data_fine, limite_persone, stanza)
 VALUES
-    (1, 'Mostra di Van Gohg', 'Mostra', 'Mostra di diversi dipinti e opere di Van Gohg', '2024-05-20', '2024-05-21', 150, 'Salone Van Gohg'),
+    (1, 'Mostra di Van Gogh', 'Mostra', 'Mostra di diversi dipinti e opere di Van Gohg', '2024-05-20', '2024-05-21', 150, 'Salone Van Gohg'),
     (2, 'Tour a tema Roma', 'Tour Guidato', 'Guarda tutta la roba rubata a Roma', '2024-06-10', '2024-06-10', 50, 'Sezione Roma'),
     (3, 'Presentazione sulla vita di Hideo Kojima', 'Evento Sociale', 'La sua vita ha molto piu significato della tua', '2024-07-01', '2024-07-01', 20, 'Auditorium'),
     (4, 'Tour a tema Egitto', 'Tour Guidato', 'Guarda tutta la rubata all Egitto', '2024-08-15', '2024-08-16', 30, 'Sezione Egitto');
