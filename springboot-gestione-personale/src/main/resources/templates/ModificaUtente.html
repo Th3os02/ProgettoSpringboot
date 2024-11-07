@@ -9,27 +9,6 @@
 <header th:replace="fragments/header :: header"></header>
 <div class="corpo">
 <h2>Modfica Utente</h2>
-<!--
-<form th:action="@{'/ProfiloUtente/Modifica/' + ${personale.id}}" method="post" th:object="${cambiaPassword}">
-
-    <table>
-        <tr>
-            <td><label for="nuovaPassword">Nuova Password:</label></td>
-            <td><input type="text" id="nuovaPassword" th:field="*{nuovaPassword}" required></td>
-            <td><div th:if="${#fields.hasErrors('nuovaPassword')}" th:errors="*{nuovaPassword}"></div></td>
-        </tr>
-        <tr>
-            <td><label for="confermaPassword">Conferma Nuova Password:</label></td>
-            <td><input type="text" id="confermaPassword" th:field="*{confermaPassword}" required></td>
-            <td><div th:if="${passwordsDiverse}" th:text="${passwordsDiverse}"></div></td>
-        </tr>
-    </table>
-    <button>
-        <a th:href="@{'/ProfiloUtente/'+ ${personale.id}}" style="text-decoration: none">Annulla</a>
-    </button>
-    <button type="submit">Salva</button>
-</form>
--->
 
 <form th:action="@{'/ProfiloUtente/Modifica/' + ${personale.id}}" method="post" th:object="${cambiaPassword}" id="form">
 
