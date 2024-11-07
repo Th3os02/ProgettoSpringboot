@@ -14,5 +14,7 @@ public interface PersonaleRepository extends CrudRepository<Personale, Integer> 
 
     Optional<Personale> findById(Integer id);
 
+    Personale findByEmail(String email);
+
     List<Personale> findByCognome(String cognome);
 }

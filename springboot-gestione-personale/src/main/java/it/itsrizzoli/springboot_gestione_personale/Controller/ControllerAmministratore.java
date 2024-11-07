@@ -68,6 +68,11 @@ public class ControllerAmministratore {
                                              .getNome()
                                              .toLowerCase());
             model.addAttribute("userId", personaleLogin.getId());
+
+            model.addAttribute("presente", false);
+            model.addAttribute("lingue-guida", false);
+
+            setModelForm(personaleForm, model);
             return "AggiungiPersonale";
         }
 
@@ -78,11 +83,28 @@ public class ControllerAmministratore {
         personale.setEmail(personaleForm.getEmail());
         personale.setPassword(personaleForm.getPassword());
 
+        // Controllo utente già esiste
+        Personale p = personaleRepository.findByEmail(personaleForm.getEmail());
+        if (p != null) {
+            model.addAttribute("presente", true);
+            model.addAttribute("lingue-guida", true);
+            setModelForm(personaleForm, model);
+            return "AggiungiPersonale";
+        }
         // Impostare le relazioni
         Ruolo ruolo = ruoloRepository.findById(personaleForm.getRuoloId())
                                      .orElse(null);
         personale.setRuolo(ruolo);
 
+        if(ruolo.getNome().equals(Ruolo.ERuolo.GUIDA.getNome())){
+
+            if(personaleForm.getLingueListId().size() == 0){
+                model.addAttribute("presente", false);
+                model.addAttribute("lingueGuida", true);
+                setModelForm(personaleForm, model);
+                return "AggiungiPersonale";
+            }
+        }
         // Contratto
         Contratto contratto = contrattoRepository.findById(personaleForm.getContrattoId())
                                                  .get();
@@ -104,6 +126,11 @@ public class ControllerAmministratore {
         personale.setRuolo(ruolo);
 
         personaleRepository.save(personale);
+
+        model.addAttribute("presente", false);
+        model.addAttribute("lingue-guida", false);
+
+
         return "redirect:/amministratore/gestisci";
     }
 

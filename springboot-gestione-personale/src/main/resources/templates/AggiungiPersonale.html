@@ -8,204 +8,213 @@
 <body>
 <header th:replace="fragments/header :: header"></header>
 <div class="corpo">
-<h2>Creazione account personale</h2>
+    <h2>Creazione account personale</h2>
 
-<form action="#" th:action="@{/aggiungi-persona}" th:object="${personaleForm}" method="post">
-    <table>
-        <tr>
-            <td>Nome:</td>
-            <td><input type="text" th:field="*{nome}" placeholder="Inserisci il tuo nome" required>
-                <p class="td-error" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}">Nome non valido</p>
-            </td>
+    <form action="#" th:action="@{/aggiungi-persona}" th:object="${personaleForm}" method="post">
+        <table>
+            <tr>
+                <td>Nome:</td>
+                <td><input type="text" th:field="*{nome}" placeholder="Inserisci il tuo nome" required>
+                    <p class="td-error" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}">Nome non valido</p>
+                </td>
 
-        </tr>
-        <tr>
-            <td>Cognome:</td>
-            <td><input type="text" th:field="*{cognome}" placeholder="Inserisci il tuo cognome" required>
-                <p class="td-error" th:if="${#fields.hasErrors('cognome')}" th:errors="*{cognome}">Cognome non
-                    valido</p>
+            </tr>
+            <tr>
+                <td>Cognome:</td>
+                <td><input type="text" th:field="*{cognome}" placeholder="Inserisci il tuo cognome" required>
+                    <p class="td-error" th:if="${#fields.hasErrors('cognome')}" th:errors="*{cognome}">Cognome non
+                        valido</p>
 
-            </td>
-        </tr>
-        <tr>
-            <td>Email:</td>
-            <td><input type="email" th:field="*{email}" placeholder="Inserisci la tua email" required>
-                <p class="td-error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email non valido</p>
+                </td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td><input type="email" th:field="*{email}" placeholder="Inserisci la tua email" required>
+                    <p class="td-error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email non valido.</p>
+                    <p class="td-error" th:if="${presente}">Email già usata.</p>
+                </td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td><input type="password" th:field="*{password}" placeholder="Inserisci la tua password" required>
+                    <p class="td-error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password non
+                        valido
+                    </p>
+                </td>
 
-            </td>
-        </tr>
-        <tr>
-            <td>Password:</td>
-            <td><input type="password" th:field="*{password}" placeholder="Inserisci la tua password" required>
-                <p class="td-error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password non valido
-                </p>
-            </td>
+            </tr>
+            <tr>
+                <td>Ruolo:</td>
+                <td>
+                    <fieldset class="my-fieldset">
+                        <div th:each="ruolo : ${ruoli}">
+                            <label class="radio-ruolo">
+                                <input type="radio" th:field="*{ruoloId}" th:value="${ruolo.id}" required
+                                />
+                                <span th:text="${ruolo.getNome()}"></span>
+                            </label>
+                        </div>
+                        <div class="td-error" th:if="${#fields.hasErrors('ruoloId')}" th:errors="*{ruoloId}"></div>
+                    </fieldset>
+                </td>
+            </tr>
+            <tr id="div-lingue">
+                <td>Lingua:</td>
+                <td>
+                    <div class="lingua-selector">
+                        <input type="hidden" th:field="*{lingueListId}" id="linguaId"/>
+                        <input type="text" placeholder="Inserisci una lingua"
+                               aria-label="Inserisci una lingua" list="list-lingue" id="lingua-input"/>
 
-        </tr>
-        <tr>
-            <td>Ruolo:</td>
-            <td>
-                <fieldset class="my-fieldset">
-                    <div th:each="ruolo : ${ruoli}">
-                        <label class="radio-ruolo">
-                            <input type="radio" th:field="*{ruoloId}" th:value="${ruolo.id}" required
-                            />
-                            <span th:text="${ruolo.getNome()}"></span>
-                        </label>
+                        <datalist id="list-lingue" class="suggestions">
+                            <option class="suggestion-item" th:each="lingua : ${lingue}"
+                                    th:value="${lingua.nomeLingua}"
+                                    th:data-id="${lingua.id}"></option>
+                        </datalist>
                     </div>
-                    <div class="td-error" th:if="${#fields.hasErrors('ruoloId')}" th:errors="*{ruoloId}"></div>
-                </fieldset>
-            </td>
-        </tr>
-        <tr id="div-lingue">
-            <td>Lingua:</td>
-            <td>
-                <div class="lingua-selector">
-                    <input type="hidden" th:field="*{lingueListId}" id="linguaId"/>
-                    <input type="text" placeholder="Inserisci una lingua"
-                           aria-label="Inserisci una lingua" list="list-lingue" id="lingua-input"/>
 
-                    <datalist id="list-lingue" class="suggestions">
-                        <option class="suggestion-item" th:each="lingua : ${lingue}"
-                                th:value="${lingua.nomeLingua}"
-                                th:data-id="${lingua.id}"></option>
-                    </datalist>
-                </div>
-
-                <button class="button-color" type="button" th:onclick="addLanguage()">Add</button>
-                <span>
+                    <button class="button-color" type="button" th:onclick="addLanguage()">Add</button>
+                    <span>
                         Lingua:
                          <span style="display: inline" id="lingueSelezionate"> </span>
                     </span>
-                <p style="display:none;" id="error-lingua" class="td-error">Attenzione: Lingua inserita non è
-                    presente</p>
-            </td>
-        </tr>
-        <tr>
-            <td>Contratto:</td>
-            <td>
-                <fieldset class="my-fieldset">
-                    <div th:each="contratto : ${contratti}">
-                        <label>
-                            <input type="radio" name="contratto" th:field="*{contrattoId}" required
-                                   th:value="${contratto.getId()}"/>
-                            <span th:text="${contratto.getTipocontratto()}"></span>
-                        </label><br>
-                    </div>
-                </fieldset>
-            </td>
-        </tr>
-    </table>
-    <br>
-    <input class="button-color" type="submit" value="Invia">
-    <a th:href="@{'/ListaPersonale'}" class="nav-link">Indietro</a>
-    </a>
-</form>
+                    <p style="display:none;" id="error-lingua" class="td-error">Attenzione: Lingua inserita non è
+                        presente</p>
+
+                    <p th:if="${lingueGuida}" class="td-error">Attenzione: Non hai inserito nessuna lingua.</p>
+                </td>
+            </tr>
+            <tr>
+                <td>Contratto:</td>
+                <td>
+                    <fieldset class="my-fieldset">
+                        <div th:each="contratto : ${contratti}">
+                            <label>
+                                <input type="radio" name="contratto" th:field="*{contrattoId}" required
+                                       th:value="${contratto.getId()}"/>
+                                <span th:text="${contratto.getTipocontratto()}"></span>
+                            </label><br>
+                        </div>
+                    </fieldset>
+                </td>
+            </tr>
+        </table>
+        <br>
+        <input class="button-color" type="submit" value="Invia">
+        <a th:href="@{'/ListaPersonale'}" class="nav-link">Indietro</a>
+        </a>
+    </form>
 
 
-<script>
-    const lingueSelezionate = [];
-    function updateLingueListId(id) {
-        console.log({id})
-        const input = document.getElementById('linguaId');
-        let currentIds = input.value ? input.value.split(',') : [];
+    <script>
+        const lingueSelezionate = [];
 
-        // Controlla se l'ID è già presente
-        const index = currentIds.indexOf(id);
-        if (index === -1) {
-            // Aggiungi l'ID se non è già presente
-            currentIds.push(id);
+        function updateLingueListId(id) {
+            console.log({id})
+            const input = document.getElementById('linguaId');
+            let currentIds = input.value ? input.value.split(',') : [];
+
+            // Controlla se l'ID è già presente
+            const index = currentIds.indexOf(id);
+            if (index === -1) {
+                // Aggiungi l'ID se non è già presente
+                currentIds.push(id);
+            }
+
+            // Aggiorna il valore dell'input nascosto
+            input.value = currentIds.join(',');
+            console.log("Lingue ID aggiornato a: " + input.value);
         }
 
-        // Aggiorna il valore dell'input nascosto
-        input.value = currentIds.join(',');
-        console.log("Lingue ID aggiornato a: " + input.value);
-    }
-    function addLanguage() {
-        const input = document.getElementById('lingua-input');
-        const lingua = input.value.trim().toLowerCase();
-        if (lingua && !lingueSelezionate.includes(lingua)) {
-            if (isPresenteLinguaDataList(lingua)) {
-                const linguaId = getLanguageIdByName(lingua);
-                addLanguageToHiddenField(linguaId);
-                console.log({linguaId})
-                updateLingueListId(linguaId);
-                lingueSelezionate.push(lingua);
-                updateLingueSelezionate();
-                input.value = ''; // Pulisci il campo di input
+        function addLanguage() {
+            const input = document.getElementById('lingua-input');
+            const lingua = input.value.trim().toLowerCase();
+            if (lingua.length == 0) return;
+            if (lingua && !lingueSelezionate.includes(lingua)) {
+                if (isPresenteLinguaDataList(lingua)) {
+                    const linguaId = getLanguageIdByName(lingua);
+                    addLanguageToHiddenField(linguaId);
+                    console.log({linguaId})
+                    updateLingueListId(linguaId);
+                    lingueSelezionate.push(lingua);
+                    updateLingueSelezionate();
+                    input.value = ''; // Pulisci il campo di input
+                } else {
+                    const errLingua = document.querySelector("#error-lingua")
+                    errLingua.style.display = ""
+                    errLingua.textContent = "La lingua non è tra quelle possibili.";
+                    input.value = '';
+                    setTimeout(() => {
+                        errLingua.style.display = "none"
+                    }, 10_000)
+                }
             } else {
                 const errLingua = document.querySelector("#error-lingua")
                 errLingua.style.display = ""
-                errLingua.textContent = "La lingua non è tra quelle possibili.";
-                input.value = '';
+                errLingua.textContent = "La Lingua è già presente";
                 setTimeout(() => {
                     errLingua.style.display = "none"
                 }, 10_000)
+                input.value = '';
             }
-        } else {
-            const errLingua = document.querySelector("#error-lingua")
-            errLingua.style.display = ""
-            errLingua.textContent = "La Lingua è già presente";
-            setTimeout(() => {
-                errLingua.style.display = "none"
-            }, 10_000)
-            input.value = '';
+            return false; // Previene l'invio del modulo
         }
-        return false; // Previene l'invio del modulo
-    }
 
-    function updateLingueSelezionate() {
-        const display = document.getElementById('lingueSelezionate');
-        display.textContent = lingueSelezionate.join(', ');
-    }
-
-    function isPresenteLinguaDataList(lingua) {
-        const dataList = document.getElementById('list-lingue');
-        const opzioniArray = [];
-        const opzioni = dataList.getElementsByTagName('option');
-        for (let i = 0; i < opzioni.length; i++) {
-            opzioniArray.push(opzioni[i].value.toLowerCase());
+        function updateLingueSelezionate() {
+            const display = document.getElementById('lingueSelezionate');
+            display.textContent = lingueSelezionate.join(', ');
         }
-        console.log({opzioniArray})
-        return opzioniArray.includes(lingua)
-    }
 
-    function getLanguageIdByName(linguaNome) {
-        console.log({linguaNome})
-        const options = document.querySelectorAll("#list-lingue option");
-        for (let i = 0; i < options.length; i++) {
-            if (options[i].value.toLowerCase() === linguaNome.toLowerCase()) {
-                return options[i].getAttribute("data-id");
+        function isPresenteLinguaDataList(lingua) {
+            const dataList = document.getElementById('list-lingue');
+            const opzioniArray = [];
+            const opzioni = dataList.getElementsByTagName('option');
+            for (let i = 0; i < opzioni.length; i++) {
+                opzioniArray.push(opzioni[i].value.toLowerCase());
             }
+            console.log({opzioniArray})
+            return opzioniArray.includes(lingua)
         }
-        return null;
-    }
 
-    function addLanguageToHiddenField(linguaId) {
-        const hiddenField = document.getElementById("linguaId");
-        const currentValue = hiddenField.value;
-        if (currentValue) {
-            hiddenField.value = currentValue + "," + linguaId;
-        } else {
-            hiddenField.value = linguaId;
+        function getLanguageIdByName(linguaNome) {
+            console.log({linguaNome})
+            const options = document.querySelectorAll("#list-lingue option");
+            for (let i = 0; i < options.length; i++) {
+                if (options[i].value.toLowerCase() === linguaNome.toLowerCase()) {
+                    return options[i].getAttribute("data-id");
+                }
+            }
+            return null;
         }
-    }
 
-    const divLingua = document.querySelector("#div-lingue");
-    const radiosRuolo = document.querySelectorAll(".radio-ruolo input[type='radio']");
-
-    radiosRuolo.forEach(radio => {
-        radio.addEventListener("click", () => {
-            const selectedRoleSpan = radio.parentNode.querySelector("span");
-            if (selectedRoleSpan.textContent === "Guida") {
-                divLingua.style.display = "";
+        function addLanguageToHiddenField(linguaId) {
+            const hiddenField = document.getElementById("linguaId");
+            const currentValue = hiddenField.value;
+            if (currentValue) {
+                hiddenField.value = currentValue + "," + linguaId;
             } else {
-                divLingua.style.display = "none";
+                hiddenField.value = linguaId;
             }
-        });
-    });
+        }
 
-</script>
+        const divLingua = document.querySelector("#div-lingue");
+        const radiosRuolo = document.querySelectorAll(".radio-ruolo input[type='radio']");
+
+        radiosRuolo.forEach(radio => {
+            radio.addEventListener("click", () => {
+                const selectedRoleSpan = radio.parentNode.querySelector("span");
+                if (selectedRoleSpan.textContent === "Guida") {
+                    divLingua.style.display = "";
+                } else {
+                    divLingua.style.display = "none";
+                }
+            });
+        });
+        radiosRuolo[0].checked = false; // Attiva il primo radio button
+        radiosRuolo[1].checked = false; // Attiva il primo radio button
+        divLingua.style.display = "";
+
+    </script>
 </div>
 </body>
 </html>
