@@ -8,6 +8,7 @@
 </head>
 <body>
 <header th:replace="fragments/header :: header"></header>
+<div class="corpo">
 <h2>Gestione del Personale</h2>
 <form th:action="@{/amministratore/cerca}" method="get">
     <label for="cognome">Cerca per cognome:</label>
@@ -54,5 +55,6 @@
 <button>
     <a th:href="@{/HomePage}">Indietro</a>
 </button>
+</div>
 </body>
 </html>
