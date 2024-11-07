@@ -7,6 +7,7 @@
 </head>
 <body>
 <header th:replace="fragments/header :: header"></header>
+<div class="corpo">
 <h2>Creazione account personale</h2>
 
 <form action="#" th:action="@{/aggiungi-persona}" th:object="${personaleForm}" method="post">
@@ -186,5 +187,6 @@
     });
 
 </script>
+</div>
 </body>
 </html>
