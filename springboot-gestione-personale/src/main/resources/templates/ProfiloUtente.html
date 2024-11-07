@@ -7,6 +7,7 @@
 </head>
 <body>
 <header th:replace="fragments/header :: header"></header>
+<div class="corpo">
 <h2>Creazione account personale</h2>
 <table>
     <tr>
@@ -44,5 +45,6 @@
 <button>
     <a th:href="@{'Modifica/' + ${personale.id}}" style="text-decoration: none">Modifica Password</a>
 </button>
+</div>
 </body>
 </html>

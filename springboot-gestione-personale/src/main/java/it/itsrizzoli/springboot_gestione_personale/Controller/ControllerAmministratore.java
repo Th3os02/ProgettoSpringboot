@@ -26,11 +26,7 @@ public class ControllerAmministratore {
     private ContrattoRepository contrattoRepository;
 
     @Autowired
-    private OrarioLavoroRepository orarioLavoroRepository;
-    @Autowired
     private PersonaleRepository personaleRepository;
-    @Autowired
-    private EventoRepository eventoRepository;
 
     // localhost:8080/aggiungi-persona
     @GetMapping("/nuovo-personale")
@@ -40,10 +36,13 @@ public class ControllerAmministratore {
             return "redirect:/login";
         }
         // nav bar
-        model.addAttribute("ruolo", personale.getRuolo().getNome().toLowerCase());
-        model.addAttribute("userId",personale.getId());
+        model.addAttribute("ruolo",
+                           personale.getRuolo()
+                                    .getNome()
+                                    .toLowerCase());
+        model.addAttribute("userId", personale.getId());
 
-    setModelForm(personaleForm, model);
+        setModelForm(personaleForm, model);
         return "AggiungiPersonale";
     }
 
@@ -64,8 +63,11 @@ public class ControllerAmministratore {
 
 
             // nav bar
-            model.addAttribute("ruolo", personaleLogin.getRuolo().getNome().toLowerCase());
-            model.addAttribute("userId",personaleLogin.getId());
+            model.addAttribute("ruolo",
+                               personaleLogin.getRuolo()
+                                             .getNome()
+                                             .toLowerCase());
+            model.addAttribute("userId", personaleLogin.getId());
             return "AggiungiPersonale";
         }
 

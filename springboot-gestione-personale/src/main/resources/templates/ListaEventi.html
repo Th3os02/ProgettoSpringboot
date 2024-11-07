@@ -8,6 +8,7 @@
 </head>
 <body>
 <header th:replace="fragments/header :: header"></header>
+<div class="corpo">
 <h2>Lista Eventi</h2>
 <table th:if="${eventi.size()} != 0" >
     <thead>
@@ -30,5 +31,6 @@
     </tbody>
 </table>
 <h4 th:if="${eventi.size()} == 0">Questo Utente non ha eventi</h4>
+</div>
 </body>
 </html>

@@ -7,28 +7,8 @@
 </head>
 <body>
 <header th:replace="fragments/header :: header"></header>
+<div class="corpo">
 <h2>Modfica Utente</h2>
-<!--
-<form th:action="@{'/ProfiloUtente/Modifica/' + ${personale.id}}" method="post" th:object="${cambiaPassword}">
-
-    <table>
-        <tr>
-            <td><label for="nuovaPassword">Nuova Password:</label></td>
-            <td><input type="text" id="nuovaPassword" th:field="*{nuovaPassword}" required></td>
-            <td><div th:if="${#fields.hasErrors('nuovaPassword')}" th:errors="*{nuovaPassword}"></div></td>
-        </tr>
-        <tr>
-            <td><label for="confermaPassword">Conferma Nuova Password:</label></td>
-            <td><input type="text" id="confermaPassword" th:field="*{confermaPassword}" required></td>
-            <td><div th:if="${passwordsDiverse}" th:text="${passwordsDiverse}"></div></td>
-        </tr>
-    </table>
-    <button>
-        <a th:href="@{'/ProfiloUtente/'+ ${personale.id}}" style="text-decoration: none">Annulla</a>
-    </button>
-    <button type="submit">Salva</button>
-</form>
--->
 
 <form th:action="@{'/ProfiloUtente/Modifica/' + ${personale.id}}" method="post" th:object="${cambiaPassword}" id="form">
 
@@ -37,14 +17,17 @@
     <label for="nuovaPassword" class="required" accesskey="n">Nuova Password: </label>
     <input type="password" id="nuovaPassword" th:field="*{nuovaPassword}"
            placeholder="Inserisci una nuova password" name="nuovaPassword" tabindex="1" title="nuovaPassword" size="30" required><br>
+    <span th:if="${#fields.hasErrors('nuovaPassword')}" th:errors="*{nuovaPassword}" style="color: red; font-size: 0.9em;"></span>
 
     <label for="confermaPassword" class="required" accesskey="p">Conferma Nuova Password: </label>
     <input id="confermaPassword" th:field="*{confermaPassword}" placeholder="Conferma nuova password" type="password" name="confermaPassword" tabindex="2" title="confermaPassword" size="30" required><br>
+    <span th:if="${passwordsDiverse}" th:text="${passwordsDiverse}" style="color: red; font-size: 0.9em;"></span>
     <div id="buttons">
         <button type="button" class="button" tabindex="3"><a th:href="@{/ProfiloUtente/{id}(id=${personale.id})}">Annulla</a></button>        <input type="submit" value="Modifica" class="button" tabindex="4">
     </div>
 
 </fieldset>
 </form>
+</div>
 </body>
 </html>

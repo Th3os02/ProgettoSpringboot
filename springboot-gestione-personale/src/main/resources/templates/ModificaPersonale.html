@@ -8,6 +8,7 @@
 </head>
 <body>
 <header th:replace="fragments/header :: header"></header>
+<div class="corpo">
 <h2>Modifica Dati Personale</h2>
 <form th:action="@{/amministratore/modifica/{id}(id=${personale.id})}" th:object="${personale}" method="post">
 
@@ -45,5 +46,6 @@
     <button type="submit">Salva Modifiche</button>
     <a th:href="@{/amministratore/gestisci}"><button type="button">Annulla</button></a>
 </form>
+</div>
 </body>
 </html>
