@@ -2,7 +2,6 @@ package it.itsrizzoli.springboot_gestione_personale.Controller;
 
 import java.util.ArrayList;
 
-import it.itsrizzoli.springboot_gestione_personale.ClassiTemporanee.PersonaleClasse; //TEMPORANEO
 import it.itsrizzoli.springboot_gestione_personale.DAO.ContrattoRepository;
 import it.itsrizzoli.springboot_gestione_personale.DAO.PersonaleRepository;
 import it.itsrizzoli.springboot_gestione_personale.DAO.RuoloRepository;

@@ -1,6 +1,5 @@
 package it.itsrizzoli.springboot_gestione_personale.Controller;
 
-import it.itsrizzoli.springboot_gestione_personale.ClassiTemporanee.PersonaleClasse;
 import it.itsrizzoli.springboot_gestione_personale.DAO.PersonaleRepository;
 import it.itsrizzoli.springboot_gestione_personale.Modelli.Personale;
 import it.itsrizzoli.springboot_gestione_personale.DAO.RuoloRepository;
